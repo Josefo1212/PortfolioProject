@@ -1,0 +1,67 @@
+.main {
+  flex: 1;
+  padding-top: 120px;
+  padding-bottom: var(--space-4xl);
+}
+
+.header {
+  margin-bottom: var(--space-3xl);
+}
+
+.title {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.accent {
+  color: var(--accent-primary);
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-3xl);
+}
+
+.card {
+  padding: var(--space-2xl);
+}
+
+.cardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--accent-primary-glow);
+  border: 1px solid var(--border-accent);
+  color: var(--accent-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.cardTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.cardText {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.logoutBtn {
+  margin: 0 auto;
+  display: flex;
+}
