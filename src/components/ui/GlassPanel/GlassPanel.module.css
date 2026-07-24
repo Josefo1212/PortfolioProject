@@ -1,0 +1,61 @@
+.panel {
+  background: var(--glass-bg);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.withBorder {
+  border: 1px solid var(--glass-border);
+}
+
+/* === VARIANTS === */
+
+.navbar {
+  background: rgba(9, 10, 15, 0.85);
+  border-radius: 0;
+  border-bottom: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-lg);
+}
+
+.modal {
+  background: rgba(13, 15, 21, 0.95);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+/* === HOVER STATE === */
+
+.hoverable:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* === CORNER ACCENT (HUD-inspired) === */
+
+.panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  border-top: 1px solid var(--accent-primary);
+  border-right: 1px solid var(--accent-primary);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  pointer-events: none;
+  border-radius: 0 var(--radius-lg) 0 0;
+}
+
+.hoverable:hover::before {
+  opacity: 0.5;
+}

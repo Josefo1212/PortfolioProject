@@ -1,0 +1,133 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-weight: var(--weight-medium);
+  font-family: var(--font-primary);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* === SIZES === */
+
+.sm {
+  padding: 6px var(--space-md);
+  font-size: var(--text-sm);
+  height: 32px;
+}
+
+.md {
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--text-sm);
+  height: 40px;
+}
+
+.lg {
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--text-base);
+  height: 48px;
+}
+
+/* === VARIANTS === */
+
+.primary {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--accent-primary-dim);
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.secondary {
+  background: transparent;
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--accent-primary-glow);
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.secondary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.ghost:hover:not(:disabled) {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.danger {
+  background: transparent;
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.danger:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* === LOADING STATE === */
+
+.loading {
+  color: transparent !important;
+}
+
+.spinner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.primary .spinner {
+  border-top-color: var(--bg-primary);
+}
+
+/* === ICONS === */
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
