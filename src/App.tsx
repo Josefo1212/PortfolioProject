@@ -1,17 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { AuthProvider } from './context/AuthProvider';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
+import { AuthPage } from './pages/Auth';
 import { Home } from './pages/Home';
-import { Login } from './pages/Login';
-import { Register } from './pages/Register';
 import { Dashboard } from './pages/Dashboard';
 
 const App = () => (
   <BrowserRouter>
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<AuthPage />} />
         <Route
           path="/home"
           element={
