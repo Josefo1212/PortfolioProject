@@ -4,6 +4,7 @@ import { Navbar } from '../../components/layout/Navbar';
 import { Footer } from '../../components/layout/Footer';
 import { Container } from '../../components/ui/Container';
 import { Button } from '../../components/ui/Button';
+import { useAuth } from '../../context/useAuth';
 import styles from './Home.module.css';
 
 const fadeUp: Variants = {
@@ -16,6 +17,8 @@ const fadeUp: Variants = {
 };
 
 export const Home = () => {
+  const { user } = useAuth();
+
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -45,7 +48,7 @@ export const Home = () => {
                 custom={1}
                 variants={fadeUp}
               >
-                Tu Nombre
+                {user ? `${user.firstName} ${user.lastName}` : 'Developer'}
               </motion.h1>
 
               <motion.p

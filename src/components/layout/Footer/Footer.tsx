@@ -1,4 +1,5 @@
 import { Mail } from 'lucide-react';
+import { useAuth } from '../../../context/useAuth';
 import { Container } from '../../ui/Container';
 import styles from './Footer.module.css';
 
@@ -27,35 +28,40 @@ const SOCIAL_LINKS = [
   { Icon: Mail, href: 'mailto:tu@email.com', label: 'Email' },
 ] as const;
 
-export const Footer = () => (
-  <footer className={styles.footer}>
-    <div className={styles.gradientLine} aria-hidden="true" />
-    <Container>
-      <div className={styles.content}>
-        <p className={styles.text}>
-          Designed &amp; Built by{' '}
-          <span className={styles.accent}>Tu Nombre</span>
-        </p>
+export const Footer = () => {
+  const { user } = useAuth();
+  const fullName = user ? `${user.firstName} ${user.lastName}` : 'Developer';
 
-        <div className={styles.socials}>
-          {SOCIAL_LINKS.map(({ Icon, href, label }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialLink}
-              aria-label={label}
-            >
-              <Icon />
-            </a>
-          ))}
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.gradientLine} aria-hidden="true" />
+      <Container>
+        <div className={styles.content}>
+          <p className={styles.text}>
+            Designed &amp; Built by{' '}
+            <span className={styles.accent}>{fullName}</span>
+          </p>
+
+          <div className={styles.socials}>
+            {SOCIAL_LINKS.map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+                aria-label={label}
+              >
+                <Icon />
+              </a>
+            ))}
+          </div>
+
+          <p className={styles.copyright}>
+            &copy; {new Date().getFullYear()}. Built with React + TypeScript
+          </p>
         </div>
-
-        <p className={styles.copyright}>
-          &copy; {new Date().getFullYear()}. Built with React + TypeScript
-        </p>
-      </div>
-    </Container>
-  </footer>
-);
+      </Container>
+    </footer>
+  );
+};

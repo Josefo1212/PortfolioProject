@@ -24,7 +24,7 @@ export const Login = () => {
     setIsLoading(false);
 
     if (result.success) {
-      navigate('/dashboard');
+      navigate('/home');
     } else {
       setError(result.error ?? 'Error al iniciar sesión');
     }
@@ -60,7 +60,7 @@ export const Login = () => {
 
           <Button
             type="submit"
-            variant="primary"
+            variant="glow"
             size="lg"
             isLoading={isLoading}
             leftIcon={<LogIn size={18} />}

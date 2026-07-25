@@ -1,7 +1,8 @@
 export interface User {
   id: string;
   email: string;
-  name: string;
+  firstName: string;
+  lastName: string;
 }
 
 export interface StoredUser extends User {
@@ -12,7 +13,7 @@ export interface AuthContextValue {
   user: User | null;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<AuthResult>;
-  register: (name: string, email: string, password: string) => Promise<AuthResult>;
+  register: (firstName: string, lastName: string, email: string, password: string) => Promise<AuthResult>;
   logout: () => void;
 }
 

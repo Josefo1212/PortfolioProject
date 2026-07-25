@@ -42,7 +42,7 @@ export const Dashboard = () => {
         <Container>
           <header className={styles.header}>
             <h1 className={styles.title}>
-              Bienvenido, <span className={styles.accent}>{user?.name}</span>
+              Bienvenido, <span className={styles.accent}>{user?.firstName} {user?.lastName}</span>
             </h1>
             <p className={styles.subtitle}>Este es tu panel de control</p>
           </header>

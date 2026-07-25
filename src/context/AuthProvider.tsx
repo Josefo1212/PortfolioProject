@@ -54,14 +54,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const register = useCallback(
-    async (name: string, email: string, password: string): Promise<AuthResult> => {
+    async (firstName: string, lastName: string, email: string, password: string): Promise<AuthResult> => {
       const users = getUsers();
 
       if (users.some((u) => u.email === email)) {
         return { success: false, error: 'Este email ya está registrado' };
       }
 
-      const newUser: StoredUser = { id: crypto.randomUUID(), name, email, password };
+      const newUser: StoredUser = { id: crypto.randomUUID(), firstName, lastName, email, password };
       saveUsers([...users, newUser]);
 
       const { password: _removed, ...sessionUser } = newUser;

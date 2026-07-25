@@ -8,7 +8,8 @@ import { Button } from '../../components/ui/Button';
 import styles from './Register.module.css';
 
 export const Register = () => {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -18,6 +19,7 @@ export const Register = () => {
   const navigate = useNavigate();
 
   const validate = (): string | null => {
+    if (!firstName.trim() || !lastName.trim()) return 'Nombre y apellido son obligatorios';
     if (password.length < 6) return 'La contraseña debe tener al menos 6 caracteres';
     if (password !== confirmPassword) return 'Las contraseñas no coinciden';
     return null;
@@ -34,11 +36,11 @@ export const Register = () => {
     }
 
     setIsLoading(true);
-    const result = await register(name, email, password);
+    const result = await register(firstName.trim(), lastName.trim(), email, password);
     setIsLoading(false);
 
     if (result.success) {
-      navigate('/dashboard');
+      navigate('/home');
     } else {
       setError(result.error ?? 'Error al crear la cuenta');
     }
@@ -53,14 +55,24 @@ export const Register = () => {
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
-          <Input
-            label="Nombre"
-            type="text"
-            placeholder="Tu nombre"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
+          <div className={styles.nameRow}>
+            <Input
+              label="Nombre"
+              type="text"
+              placeholder="Juan"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+            <Input
+              label="Apellido"
+              type="text"
+              placeholder="Pérez"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
           <Input
             label="Email"
             type="email"
@@ -90,7 +102,7 @@ export const Register = () => {
 
           <Button
             type="submit"
-            variant="primary"
+            variant="glow"
             size="lg"
             isLoading={isLoading}
             leftIcon={<UserPlus size={18} />}
@@ -102,7 +114,7 @@ export const Register = () => {
 
         <p className={styles.footer}>
           ¿Ya tienes cuenta?{' '}
-          <Link to="/login" className={styles.link}>
+          <Link to="/" className={styles.link}>
             Inicia sesión
           </Link>
         </p>

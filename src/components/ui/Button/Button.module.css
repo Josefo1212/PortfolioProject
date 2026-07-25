@@ -131,3 +131,77 @@
   align-items: center;
   gap: var(--space-sm);
 }
+
+/* === GLOW VARIANT === */
+
+.glow {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: none;
+  position: relative;
+  z-index: 0;
+}
+
+.glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    var(--glow-angle, 0deg),
+    var(--accent-primary),
+    var(--accent-secondary),
+    var(--accent-primary)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: glow-rotate 3s linear infinite;
+  z-index: -2;
+}
+
+.glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    var(--glow-angle, 0deg),
+    var(--accent-primary),
+    var(--accent-secondary),
+    var(--accent-primary)
+  );
+  filter: blur(12px);
+  opacity: 0.4;
+  animation: glow-rotate 3s linear infinite;
+  z-index: -1;
+  transition: opacity var(--transition-base);
+}
+
+.glow:hover:not(:disabled)::after {
+  opacity: 0.7;
+}
+
+.glow:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.glow:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.glow::before {
+  animation: glow-rotate 3s linear infinite;
+}
+
+@keyframes glow-rotate {
+  0% { --glow-angle: 0deg; }
+  100% { --glow-angle: 360deg; }
+}
+
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}

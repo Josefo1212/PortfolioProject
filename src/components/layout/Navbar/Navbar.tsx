@@ -6,15 +6,15 @@ import { Container } from '../../ui/Container';
 import styles from './Navbar.module.css';
 
 const NAV_LINKS = [
-  { path: '/', label: 'Inicio' },
-  { path: '/#skills', label: 'Skills' },
-  { path: '/#projects', label: 'Proyectos' },
+  { path: '/home', label: 'Inicio' },
+  { path: '/home#skills', label: 'Skills' },
+  { path: '/home#projects', label: 'Proyectos' },
 ] as const;
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const { isAuthenticated, user, logout } = useAuth();
+  const { user, logout } = useAuth();
   const location = useLocation();
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export const Navbar = () => {
   }, [closeMobile, logout]);
 
   const isActive = useCallback(
-    (path: string) => path === '/' && location.pathname === '/',
+    (path: string) => location.pathname === path,
     [location.pathname]
   );
 
@@ -44,7 +44,7 @@ export const Navbar = () => {
     <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
       <Container>
         <div className={styles.content}>
-          <Link to="/" className={styles.logo} onClick={closeMobile}>
+          <Link to="/home" className={styles.logo} onClick={closeMobile}>
             <span className={styles.accent}>&lt;</span>
             Portfolio
             <span className={styles.accent}> /&gt;</span>
@@ -62,22 +62,16 @@ export const Navbar = () => {
               </Link>
             ))}
 
-            {isAuthenticated ? (
-              <>
-                <Link to="/dashboard" className={styles.link} onClick={closeMobile}>
-                  Dashboard
-                </Link>
-                <button onClick={handleLogout} className={styles.authBtn}>
-                  Cerrar Sesión
-                </button>
-                {user && (
-                  <span className={styles.userBadge}>{user.name.charAt(0).toUpperCase()}</span>
-                )}
-              </>
-            ) : (
-              <Link to="/login" className={styles.authBtn} onClick={closeMobile}>
-                Iniciar Sesión
-              </Link>
+            <Link to="/dashboard" className={styles.link} onClick={closeMobile}>
+              Dashboard
+            </Link>
+
+            <button onClick={handleLogout} className={styles.authBtn}>
+              Cerrar Sesión
+            </button>
+
+            {user && (
+              <span className={styles.userBadge}>{user.firstName.charAt(0).toUpperCase()}</span>
             )}
           </div>
 
