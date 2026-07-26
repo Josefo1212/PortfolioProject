@@ -7,6 +7,7 @@ import { GlassPanel } from '../../components/ui/GlassPanel';
 import { Input } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
 import { ErrorBanner } from '../../components/ui/ErrorBanner';
+import { WaitComponent } from '../../components/ui/WaitComponent';
 import styles from './AuthPage.module.css';
 
 const inputVariants = {
@@ -68,6 +69,7 @@ function validateConfirm(value: string, password: string): string {
 export const AuthPage = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [cardHeight, setCardHeight] = useState<number | 'auto'>('auto');
+  const [showLoader, setShowLoader] = useState(false);
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -172,7 +174,8 @@ export const AuthPage = () => {
     const result = await login(loginEmail, loginPassword);
     setLoginLoading(false);
     if (result.success) {
-      navigate('/home');
+      setShowLoader(true);
+      setTimeout(() => navigate('/home'), 2000);
     } else {
       setLoginError(result.error ?? 'Error al iniciar sesión');
     }
@@ -220,6 +223,7 @@ export const AuthPage = () => {
 
   return (
     <div className={styles.page}>
+      {showLoader && <WaitComponent />}
       <div className={styles.orbs}>
         <div className={`${styles.orb} ${styles.orb1}`} />
         <div className={`${styles.orb} ${styles.orb2}`} />
