@@ -42,9 +42,8 @@ function validateEmail(value: string): string {
 
 function validatePassword(value: string): string {
   if (!value) return 'La contraseña es obligatoria';
-  if (value.length < 6) return 'Mínimo 6 caracteres';
-  if (!/[A-Z]/.test(value)) return 'Debe contener al menos una mayúscula';
-  if (!/[0-9]/.test(value)) return 'Debe contener al menos un número';
+  if (value.length < 8) return 'Mínimo 8 caracteres';
+  if (value.length > 15) return 'Máximo 15 caracteres';
   return '';
 }
 
@@ -359,7 +358,7 @@ export const AuthPage = () => {
                     onChange={(e) => setRegPassword(e.target.value)}
                     onBlur={handleRegPasswordBlur}
                     error={regTouched.password ? regFieldErrors.password : undefined}
-                    hint="Mínimo 6 caracteres, 1 mayúscula y 1 número"
+                    hint="Entre 8 y 15 caracteres"
                     required
                   />
                 </motion.div>

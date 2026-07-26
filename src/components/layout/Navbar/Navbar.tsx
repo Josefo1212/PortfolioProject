@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { path: '/home', label: 'Inicio' },
   { path: '/home#skills', label: 'Skills' },
   { path: '/home#projects', label: 'Proyectos' },
+  { path: '/dashboard', label: 'Dashboard' },
 ] as const;
 
 export const Navbar = () => {
@@ -105,9 +106,7 @@ export const Navbar = () => {
             </button>
 
             {user && (
-              <Link to="/dashboard" className={styles.userBadge} onClick={closeMobile}>
-                {user.firstName.charAt(0).toUpperCase()}
-              </Link>
+              <span className={styles.userBadge}>{user.firstName.charAt(0).toUpperCase()}</span>
             )}
           </div>
 
