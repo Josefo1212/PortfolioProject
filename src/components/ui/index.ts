@@ -5,3 +5,4 @@ export { ErrorBanner } from './ErrorBanner';
 export { GlassPanel } from './GlassPanel';
 export { Input } from './Input';
 export { SectionTitle } from './SectionTitle';
+export { Tabs, TabList, Tab, TabPanel } from './Tabs';

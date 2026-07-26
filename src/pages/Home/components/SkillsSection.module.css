@@ -1,0 +1,36 @@
+.wrapper {
+  text-align: center;
+}
+
+.tabList {
+  justify-content: center;
+}
+
+.tabContent {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.skillBadge {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  padding: var(--space-sm) var(--space-lg);
+  cursor: default;
+  transition: all var(--transition-fast);
+}
+
+.skillBadge:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: var(--accent-primary-glow);
+}

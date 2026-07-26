@@ -1,0 +1,71 @@
+.tabs {
+  width: 100%;
+}
+
+/* === TAB LIST === */
+
+.tabList {
+  display: flex;
+  gap: var(--space-xs);
+  position: relative;
+  border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabList::-webkit-scrollbar {
+  display: none;
+}
+
+/* === INDICATOR === */
+
+.indicator {
+  position: absolute;
+  bottom: -1px;
+  left: var(--indicator-left, 0);
+  width: var(--indicator-width, 0);
+  height: 2px;
+  background: var(--accent-primary);
+  border-radius: 1px;
+  box-shadow: 0 0 8px var(--accent-primary-glow);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* === TAB === */
+
+.tab {
+  flex-shrink: 0;
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  font-family: var(--font-primary);
+  color: var(--text-tertiary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--text-secondary);
+}
+
+.tab.active {
+  color: var(--accent-primary);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
+}
+
+/* === TAB PANEL === */
+
+.tabPanel {
+  padding-top: var(--space-xl);
+}

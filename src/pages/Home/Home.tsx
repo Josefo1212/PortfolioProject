@@ -5,6 +5,7 @@ import { Footer } from '../../components/layout/Footer';
 import { Container } from '../../components/ui/Container';
 import { Button } from '../../components/ui/Button';
 import { useAuth } from '../../context/useAuth';
+import { SkillsSection } from './components/SkillsSection';
 import styles from './Home.module.css';
 
 const fadeUp: Variants = {
@@ -106,7 +107,7 @@ export const Home = () => {
 
         <section id="skills" className={styles.section}>
           <Container>
-            <p className={styles.placeholder}>Skills section — Próximamente</p>
+            <SkillsSection />
           </Container>
         </section>
 
