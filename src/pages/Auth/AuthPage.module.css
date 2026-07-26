@@ -53,6 +53,27 @@
   animation: orb-drift-3 18s ease-in-out infinite 6s;
 }
 
+/* === PARTICLES === */
+
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  left: var(--x, 50%);
+  bottom: -10px;
+  width: var(--size, 3px);
+  height: var(--size, 3px);
+  border-radius: 50%;
+  background: var(--accent-primary);
+  opacity: 0;
+  animation: float-up var(--duration, 20s) linear var(--delay, 0s) infinite;
+}
+
 /* === 3D SCENE === */
 
 .scene {
@@ -186,4 +207,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .orbs { animation: none; }
+  .particle { animation: none; }
 }

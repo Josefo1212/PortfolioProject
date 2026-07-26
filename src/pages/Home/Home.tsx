@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { motion, type Variants } from 'framer-motion';
 import { ArrowDown, ExternalLink } from 'lucide-react';
 import { Navbar } from '../../components/layout/Navbar';
@@ -19,6 +21,16 @@ const fadeUp: Variants = {
 
 export const Home = () => {
   const { user } = useAuth();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      setTimeout(() => {
+        const el = document.getElementById(location.hash.replace('#', ''));
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, [location.hash]);
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { useAuth } from '../../../context/useAuth';
 import { Container } from '../../ui/Container';
@@ -12,11 +12,20 @@ const NAV_LINKS = [
   { path: '/dashboard', label: 'Dashboard' },
 ] as const;
 
+function scrollToHash(hash: string) {
+  const id = hash.replace('#', '');
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { user, logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const navLinksRef = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLDivElement>(null);
 
@@ -65,6 +74,25 @@ export const Navbar = () => {
     logout();
   }, [closeMobile, logout]);
 
+  const handleNavClick = useCallback((path: string) => {
+    closeMobile();
+
+    const hashIndex = path.indexOf('#');
+    if (hashIndex !== -1) {
+      const hash = path.slice(hashIndex);
+      const basePath = path.slice(0, hashIndex);
+
+      if (location.pathname === basePath) {
+        scrollToHash(hash);
+      } else {
+        navigate(path);
+        setTimeout(() => scrollToHash(hash), 100);
+      }
+    } else if (location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location.pathname, navigate, closeMobile]);
+
   const isActive = useCallback(
     (path: string) => {
       if (path === '/home') return location.pathname === '/home' && !location.hash;
@@ -94,7 +122,7 @@ export const Navbar = () => {
                   to={link.path}
                   data-active={isActive(link.path)}
                   className={`${styles.link} ${isActive(link.path) ? styles.active : ''}`}
-                  onClick={closeMobile}
+                  onClick={() => handleNavClick(link.path)}
                 >
                   {link.label}
                 </Link>

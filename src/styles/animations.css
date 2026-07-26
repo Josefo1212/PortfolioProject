@@ -113,6 +113,19 @@
   80% { transform: translate(-40px, 70px) scale(1.05); }
 }
 
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% { opacity: 0.25; }
+  90% { opacity: 0.25; }
+  100% {
+    transform: translateY(-20px) translateX(var(--drift, 20px));
+    opacity: 0;
+  }
+}
+
 /* === UTILITY CLASSES === */
 
 .animate-fade-in {

@@ -229,6 +229,21 @@ export const AuthPage = () => {
         <div className={`${styles.orb} ${styles.orb2}`} />
         <div className={`${styles.orb} ${styles.orb3}`} />
       </div>
+      <div className={styles.particles} aria-hidden="true">
+        {Array.from({ length: 15 }, (_, i) => (
+          <div
+            key={i}
+            className={styles.particle}
+            style={{
+              '--x': `${10 + ((i * 6) % 80)}%`,
+              '--size': `${2 + (i % 3)}px`,
+              '--duration': `${15 + ((i * 3) % 20)}s`,
+              '--delay': `${(i * 1.5) % 12}s`,
+              '--drift': `${-15 + ((i * 7) % 30)}px`,
+            } as React.CSSProperties}
+          />
+        ))}
+      </div>
       <div className={styles.scene}>
         <div
           className={`${styles.card} ${isFlipped ? styles.flipped : ''}`}
