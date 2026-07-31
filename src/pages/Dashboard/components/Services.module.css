@@ -70,12 +70,41 @@
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
   transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.service::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    240px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    rgba(0, 212, 255, 0.14),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
 }
 
 .service:hover {
   border-color: var(--border-accent);
-  background: var(--accent-primary-glow);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.service:hover::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service::after {
+    display: none;
+  }
 }
 
 .serviceIcon {

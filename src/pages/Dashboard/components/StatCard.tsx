@@ -16,7 +16,7 @@ export const StatCard = ({ icon: Icon, label, value, index }: StatCardProps) => 
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: index * 0.08, duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
   >
-    <GlassPanel variant="card" hover className={styles.card}>
+    <GlassPanel variant="card" hover spotlight className={styles.card}>
       <div className={styles.icon}>
         <Icon size={18} />
       </div>

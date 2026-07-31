@@ -39,6 +39,35 @@
   box-shadow: var(--shadow-md);
 }
 
+/* === SPOTLIGHT EFFECT (cursor-follow) === */
+
+.spotlight::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    240px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    rgba(0, 212, 255, 0.14),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+
+.spotlight:hover::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight::after {
+    display: none;
+  }
+}
+
 /* === CORNER ACCENT (HUD-inspired) === */
 
 .panel::before {

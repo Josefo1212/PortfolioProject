@@ -97,6 +97,36 @@
   background: rgba(239, 68, 68, 0.1);
 }
 
+/* === GLARE EFFECT === */
+
+.button:not(.glow)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  transform: translateX(-250%) skewX(-20deg);
+  transition: transform 0.6s var(--ease-out);
+  pointer-events: none;
+}
+
+.button:not(.glow):hover::after {
+  transform: translateX(450%) skewX(-20deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:not(.glow)::after {
+    display: none;
+  }
+}
+
 /* === LOADING STATE === */
 
 .loading {
