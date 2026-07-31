@@ -112,11 +112,12 @@ export const Navbar = () => {
       <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
       <Container>
         <div className={styles.content}>
-          <Link to="/home" className={styles.logo} onClick={closeMobile}>
-            <span className={styles.accent}>&lt;</span>
+          <span className={styles.logo} aria-label="Portfolio">
+            <span>&lt;</span>
             Portfolio
-            <span className={styles.accent}> /&gt;</span>
-          </Link>
+            <span> /&gt;</span>
+            <span className={styles.caret}>|</span>
+          </span>
 
           <div className={`${styles.links} ${isMobileOpen ? styles.open : ''}`}>
             <div className={styles.navLinksContainer} ref={navLinksRef}>
