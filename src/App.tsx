@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthProvider';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import { RouteTransition } from './components/RouteTransition/RouteTransition';
 import { AuthPage } from './pages/Auth';
+import { ClickSpark } from './components/ClickSpark/ClickSpark';
 
 const Home = lazy(() => import('./pages/Home').then((m) => ({ default: m.Home })));
 const Dashboard = lazy(() => import('./pages/Dashboard').then((m) => ({ default: m.Dashboard })));
@@ -34,6 +35,7 @@ const App = () => (
           }
         />
       </Routes>
+      <ClickSpark />
     </AuthProvider>
   </BrowserRouter>
 );

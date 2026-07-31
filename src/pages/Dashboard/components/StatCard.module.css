@@ -6,6 +6,10 @@
   min-height: 120px;
 }
 
+.card:active {
+  transform: scale(0.98);
+}
+
 .icon {
   display: flex;
   align-items: center;

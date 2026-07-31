@@ -101,6 +101,10 @@
   opacity: 1;
 }
 
+.service:active {
+  transform: scale(0.98);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .service::after {
     display: none;
