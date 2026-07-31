@@ -1,5 +1,5 @@
 import { type ElementType } from 'react';
-import { Braces, Code2, Database, LayoutDashboard } from 'lucide-react';
+import { Braces, Code2, Database, LayoutDashboard, Server } from 'lucide-react';
 
 export interface YearlyProjects {
   year: string;
@@ -59,5 +59,11 @@ export const SERVICES: Service[] = [
     title: 'APIs REST',
     description:
       'Diseño e implementación de APIs documentadas, seguras y orientadas a microservicios.',
+  },
+  {
+    icon: Server,
+    title: 'Microservicios',
+    description:
+      'Arquitecturas desacopladas con servicios independientes, escalables y fácilmente mantenibles.',
   },
 ];

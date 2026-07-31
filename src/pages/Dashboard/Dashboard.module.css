@@ -50,48 +50,6 @@
   align-items: stretch;
 }
 
-/* === QUICK LINKS === */
-
-.quickSection {
-  margin-top: var(--space-3xl);
-}
-
-.quickGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-lg);
-}
-
-.quickCard {
-  padding: var(--space-2xl);
-}
-
-.quickIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
-  background: var(--accent-primary-glow);
-  border: 1px solid var(--border-accent);
-  color: var(--accent-primary);
-  margin-bottom: var(--space-lg);
-}
-
-.quickTitle {
-  font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
-  color: var(--text-primary);
-  margin-bottom: var(--space-sm);
-}
-
-.quickText {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-  line-height: var(--leading-relaxed);
-}
-
 /* === RESPONSIVE === */
 
 @media (max-width: 1024px) {

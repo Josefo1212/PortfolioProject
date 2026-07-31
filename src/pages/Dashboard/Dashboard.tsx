@@ -1,12 +1,10 @@
 import { useNavigate } from 'react-router';
-import { Activity, Code2, FolderGit2, Languages, LogOut, User, Users } from 'lucide-react';
+import { Code2, FolderGit2, Languages, LogOut, Users } from 'lucide-react';
 import { useAuth } from '../../context/useAuth';
 import { Navbar } from '../../components/layout/Navbar';
 import { Footer } from '../../components/layout/Footer';
 import { Container } from '../../components/ui/Container';
-import { GlassPanel } from '../../components/ui/GlassPanel';
 import { Button } from '../../components/ui/Button';
-import { SectionTitle } from '../../components/ui/SectionTitle';
 import { StatCard } from './components/StatCard';
 import { ProjectsChart } from './components/ProjectsChart';
 import { LinesChart } from './components/LinesChart';
@@ -18,24 +16,6 @@ const STATS = [
   { icon: Languages, label: 'Lenguajes', value: '8' },
   { icon: FolderGit2, label: 'Proyectos', value: '12' },
   { icon: Users, label: 'Proyectos en Equipo', value: '6' },
-] as const;
-
-const QUICK_LINKS = [
-  {
-    icon: User,
-    title: 'Perfil',
-    description: 'Gestiona tu información personal y configuración de cuenta.',
-  },
-  {
-    icon: Activity,
-    title: 'Actividad',
-    description: 'Revisa tu historial de actividad y estadísticas de la cuenta.',
-  },
-  {
-    icon: FolderGit2,
-    title: 'Proyectos',
-    description: 'Administra y organiza tus proyectos personales.',
-  },
 ] as const;
 
 export const Dashboard = () => {
@@ -82,26 +62,6 @@ export const Dashboard = () => {
           </div>
 
           <Services />
-
-          <section className={styles.quickSection}>
-            <SectionTitle
-              label="// Accesos rápidos"
-              title="Módulos"
-              alignment="left"
-            />
-
-            <div className={styles.quickGrid}>
-              {QUICK_LINKS.map(({ icon: Icon, title, description }) => (
-                <GlassPanel key={title} variant="card" hover className={styles.quickCard}>
-                  <div className={styles.quickIcon}>
-                    <Icon size={20} />
-                  </div>
-                  <h2 className={styles.quickTitle}>{title}</h2>
-                  <p className={styles.quickText}>{description}</p>
-                </GlassPanel>
-              ))}
-            </div>
-          </section>
         </Container>
       </main>
       <Footer />

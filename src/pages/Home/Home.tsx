@@ -101,9 +101,6 @@ export const Home = () => {
                 >
                   Ver Proyectos
                 </Button>
-                <Button variant="secondary" size="lg">
-                  Contacto
-                </Button>
               </motion.div>
             </div>
           </Container>
