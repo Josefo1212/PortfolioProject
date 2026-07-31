@@ -8,6 +8,7 @@ import { Container } from '../../components/ui/Container';
 import { Button } from '../../components/ui/Button';
 import { useAuth } from '../../context/useAuth';
 import { SkillsSection } from './components/SkillsSection';
+import { ProjectsSection } from './components/ProjectsSection';
 import styles from './Home.module.css';
 
 const fadeUp: Variants = {
@@ -125,7 +126,7 @@ export const Home = () => {
 
         <section id="projects" className={styles.section}>
           <Container>
-            <p className={styles.placeholder}>Projects section — Próximamente</p>
+            <ProjectsSection />
           </Container>
         </section>
       </main>

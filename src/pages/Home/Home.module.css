@@ -91,9 +91,3 @@
 .section {
   padding: var(--space-section) 0;
 }
-
-.placeholder {
-  text-align: center;
-  color: var(--text-tertiary);
-  font-size: var(--text-lg);
-}
