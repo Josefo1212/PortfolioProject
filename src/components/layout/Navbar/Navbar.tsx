@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { useAuth } from '../../../context/useAuth';
+import { useLogoutFlow } from '../../../hooks/useLogoutFlow';
+import { WaitComponent } from '../../ui/WaitComponent';
 import { Container } from '../../ui/Container';
 import styles from './Navbar.module.css';
 
@@ -23,7 +25,8 @@ function scrollToHash(hash: string) {
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
+  const { isLoggingOut, handleLogout } = useLogoutFlow();
   const location = useLocation();
   const navigate = useNavigate();
   const navLinksRef = useRef<HTMLDivElement>(null);
@@ -69,10 +72,10 @@ export const Navbar = () => {
 
   const closeMobile = useCallback(() => setIsMobileOpen(false), []);
 
-  const handleLogout = useCallback(() => {
+  const onLogout = useCallback(() => {
     closeMobile();
-    logout();
-  }, [closeMobile, logout]);
+    handleLogout();
+  }, [closeMobile, handleLogout]);
 
   const handleNavClick = useCallback((path: string) => {
     closeMobile();
@@ -104,7 +107,9 @@ export const Navbar = () => {
   );
 
   return (
-    <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
+    <>
+      {isLoggingOut && <WaitComponent />}
+      <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
       <Container>
         <div className={styles.content}>
           <Link to="/home" className={styles.logo} onClick={closeMobile}>
@@ -129,7 +134,7 @@ export const Navbar = () => {
               ))}
             </div>
 
-            <button onClick={handleLogout} className={styles.authBtn}>
+            <button onClick={onLogout} className={styles.authBtn}>
               Cerrar Sesión
             </button>
 
@@ -148,5 +153,6 @@ export const Navbar = () => {
         </div>
       </Container>
     </nav>
+    </>
   );
 };

@@ -1,9 +1,12 @@
+import { lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { AuthProvider } from './context/AuthProvider';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
+import { RouteTransition } from './components/RouteTransition/RouteTransition';
 import { AuthPage } from './pages/Auth';
-import { Home } from './pages/Home';
-import { Dashboard } from './pages/Dashboard';
+
+const Home = lazy(() => import('./pages/Home').then((m) => ({ default: m.Home })));
+const Dashboard = lazy(() => import('./pages/Dashboard').then((m) => ({ default: m.Dashboard })));
 
 const App = () => (
   <BrowserRouter>
@@ -14,7 +17,9 @@ const App = () => (
           path="/home"
           element={
             <ProtectedRoute>
-              <Home />
+              <RouteTransition>
+                <Home />
+              </RouteTransition>
             </ProtectedRoute>
           }
         />
@@ -22,7 +27,9 @@ const App = () => (
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <RouteTransition>
+                <Dashboard />
+              </RouteTransition>
             </ProtectedRoute>
           }
         />

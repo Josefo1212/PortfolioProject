@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router';
 import { Code2, FolderGit2, Languages, LogOut, Users } from 'lucide-react';
 import { useAuth } from '../../context/useAuth';
+import { useLogoutFlow } from '../../hooks/useLogoutFlow';
 import { Navbar } from '../../components/layout/Navbar';
 import { Footer } from '../../components/layout/Footer';
+import { WaitComponent } from '../../components/ui/WaitComponent';
 import { Container } from '../../components/ui/Container';
 import { Button } from '../../components/ui/Button';
 import { StatCard } from './components/StatCard';
@@ -19,16 +20,12 @@ const STATS = [
 ] as const;
 
 export const Dashboard = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-  };
+  const { user } = useAuth();
+  const { isLoggingOut, handleLogout } = useLogoutFlow();
 
   return (
     <>
+      {isLoggingOut && <WaitComponent />}
       <Navbar />
       <main className={styles.main}>
         <Container>
