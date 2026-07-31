@@ -79,6 +79,7 @@ export const AuthPage = () => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [loginSuccess, setLoginSuccess] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
 
   // Register state
@@ -113,6 +114,7 @@ export const AuthPage = () => {
 
   const handleFlip = useCallback(() => {
     setLoginError('');
+    setLoginSuccess('');
     setRegError('');
     setLoginFieldErrors(EMPTY_ERRORS);
     setRegFieldErrors(EMPTY_ERRORS);
@@ -161,6 +163,7 @@ export const AuthPage = () => {
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     setLoginError('');
+    setLoginSuccess('');
 
     // Validate all fields
     const emailErr = validateEmail(loginEmail);
@@ -214,6 +217,7 @@ export const AuthPage = () => {
       setRegPassword('');
       setRegConfirm('');
       setLoginError('');
+      setLoginSuccess('Cuenta creada exitosamente. Ya puedes iniciar sesión.');
       setRegFieldErrors(EMPTY_ERRORS);
       setRegTouched({});
     } else {
@@ -264,7 +268,7 @@ export const AuthPage = () => {
                     type="email"
                     placeholder="tu@email.com"
                     value={loginEmail}
-                    onChange={(e) => setLoginEmail(e.target.value)}
+                    onChange={(e) => { setLoginEmail(e.target.value); setLoginSuccess(''); }}
                     onBlur={handleLoginEmailBlur}
                     error={loginTouched.email ? loginFieldErrors.email : undefined}
                     required
@@ -276,12 +280,22 @@ export const AuthPage = () => {
                     type="password"
                     placeholder="••••••••"
                     value={loginPassword}
-                    onChange={(e) => setLoginPassword(e.target.value)}
+                    onChange={(e) => { setLoginPassword(e.target.value); setLoginSuccess(''); }}
                     onBlur={handleLoginPasswordBlur}
                     error={loginTouched.password ? loginFieldErrors.password : undefined}
                     required
                   />
                 </motion.div>
+
+                {loginSuccess && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ErrorBanner message={loginSuccess} variant="success" />
+                  </motion.div>
+                )}
 
                 {loginError && (
                   <motion.div
