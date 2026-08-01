@@ -97,6 +97,20 @@
   background: rgba(239, 68, 68, 0.1);
 }
 
+.gradient {
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  color: #ffffff;
+}
+
+.gradient:hover:not(:disabled) {
+  background: linear-gradient(90deg, var(--accent-primary-dim), var(--accent-secondary-dim));
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.gradient:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
 /* === GLARE EFFECT === */
 
 .button:not(.glow)::after {

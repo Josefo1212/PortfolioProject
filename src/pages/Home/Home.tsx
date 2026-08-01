@@ -94,7 +94,7 @@ export const Home = () => {
                 variants={fadeUp}
               >
                 <Button
-                  variant="primary"
+                  variant="gradient"
                   size="lg"
                   onClick={scrollToProjects}
                   rightIcon={<ExternalLink size={16} />}
