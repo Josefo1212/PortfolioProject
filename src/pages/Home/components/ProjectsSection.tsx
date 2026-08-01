@@ -1,93 +1,10 @@
-import { useEffect, useRef, useState, type ElementType, type KeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import {
-  ChevronLeft,
-  ChevronRight,
-  ExternalLink,
-  LayoutDashboard,
-  Monitor,
-  Server,
-  ShoppingCart,
-  Smartphone,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { Badge } from '../../../components/ui/Badge';
 import { SectionTitle } from '../../../components/ui/SectionTitle';
+import { PROJECTS, type Project } from './data';
 import styles from './ProjectsSection.module.css';
-
-interface Project {
-  id: string;
-  title: string;
-  category: string;
-  icon: ElementType;
-  description: string;
-  tech: string[];
-  gradient: 'preview1' | 'preview2' | 'preview3' | 'preview4' | 'preview5';
-  repo: string;
-  live: string;
-}
-
-const PROJECTS: Project[] = [
-  {
-    id: 'portfolio',
-    title: 'Portfolio Personal',
-    category: 'Web',
-    icon: Monitor,
-    description:
-      'Sitio personal con estética de command center, animaciones fluidas y experiencia de usuario premium.',
-    tech: ['React', 'TypeScript', 'Vite', 'Framer Motion'],
-    gradient: 'preview1',
-    repo: 'https://github.com',
-    live: 'https://github.com',
-  },
-  {
-    id: 'admin-dashboard',
-    title: 'Admin Dashboard',
-    category: 'Dashboard',
-    icon: LayoutDashboard,
-    description:
-      'Panel de control con métricas en tiempo real, gráficas interactivas y gestión de usuarios.',
-    tech: ['React', 'Node.js', 'PostgreSQL', 'Recharts'],
-    gradient: 'preview2',
-    repo: 'https://github.com',
-    live: 'https://github.com',
-  },
-  {
-    id: 'ecommerce',
-    title: 'E-commerce',
-    category: 'Web',
-    icon: ShoppingCart,
-    description:
-      'Tienda online completa con carrito de compras, pasarela de pagos y panel de administración.',
-    tech: ['Next.js', 'TypeScript', 'Stripe', 'Prisma'],
-    gradient: 'preview3',
-    repo: 'https://github.com',
-    live: 'https://github.com',
-  },
-  {
-    id: 'task-manager',
-    title: 'Task Manager App',
-    category: 'App',
-    icon: Smartphone,
-    description:
-      'Aplicación móvil para gestión de tareas con sincronización en la nube y modo offline.',
-    tech: ['React Native', 'Express', 'MongoDB'],
-    gradient: 'preview4',
-    repo: 'https://github.com',
-    live: 'https://github.com',
-  },
-  {
-    id: 'rest-api',
-    title: 'REST API',
-    category: 'Backend',
-    icon: Server,
-    description:
-      'API escalable con autenticación JWT, control de roles, rate limiting y documentación OpenAPI.',
-    tech: ['Node.js', 'Express', 'PostgreSQL', 'Docker'],
-    gradient: 'preview5',
-    repo: 'https://github.com',
-    live: 'https://github.com',
-  },
-];
 
 const GAP = 24;
 
@@ -146,10 +63,12 @@ const ProjectCard = ({ project, active }: { project: Project; active: boolean })
             <GitHubIcon />
             <span>Código</span>
           </a>
-          <a href={project.live} target="_blank" rel="noopener noreferrer" className={styles.link}>
-            <ExternalLink size={14} />
-            <span>Demo</span>
-          </a>
+          {project.live && (
+            <a href={project.live} target="_blank" rel="noopener noreferrer" className={styles.link}>
+              <ExternalLink size={14} />
+              <span>Demo</span>
+            </a>
+          )}
         </div>
       </div>
     </article>
