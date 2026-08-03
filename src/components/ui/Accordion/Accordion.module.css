@@ -1,0 +1,77 @@
+.accordion {
+  width: 100%;
+}
+
+/* === ITEM === */
+
+.item {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+/* === TRIGGER === */
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  padding: var(--space-sm) 0;
+  background: none;
+  border: none;
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: left;
+  transition: color var(--transition-fast);
+}
+
+.trigger:hover {
+  color: var(--accent-primary);
+}
+
+.triggerOpen {
+  color: var(--accent-primary);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+.triggerLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  transition: transform var(--transition-base), color var(--transition-fast);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+  color: var(--accent-primary);
+}
+
+/* === CONTENT === */
+
+.content {
+  overflow: hidden;
+}
+
+.contentInner {
+  padding: 0 0 var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}

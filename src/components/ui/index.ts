@@ -7,3 +7,4 @@ export { Input } from './Input';
 export { WaitComponent } from './WaitComponent';
 export { SectionTitle } from './SectionTitle';
 export { Tabs, TabList, Tab, TabPanel } from './Tabs';
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './Accordion';

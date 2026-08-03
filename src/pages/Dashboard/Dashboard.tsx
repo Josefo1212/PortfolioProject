@@ -1,4 +1,4 @@
-import { Code2, FolderGit2, Languages, LogOut, Users } from 'lucide-react';
+import { Boxes, Code2, FolderGit2, Languages, Layers, LogOut } from 'lucide-react';
 import { useAuth } from '../../context/useAuth';
 import { useLogoutFlow } from '../../hooks/useLogoutFlow';
 import { Navbar } from '../../components/layout/Navbar';
@@ -16,7 +16,8 @@ const STATS = [
   { icon: Code2, label: 'Líneas de Código', value: '85k+' },
   { icon: Languages, label: 'Lenguajes', value: '8' },
   { icon: FolderGit2, label: 'Proyectos', value: '12' },
-  { icon: Users, label: 'Proyectos en Equipo', value: '6' },
+  { icon: Boxes, label: 'Componentes', value: '50+' },
+  { icon: Layers, label: 'Tecnologías', value: '12' },
 ] as const;
 
 export const Dashboard = () => {

@@ -3,6 +3,12 @@ import { motion, type Variants } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { Badge } from '../../../components/ui/Badge';
 import { SectionTitle } from '../../../components/ui/SectionTitle';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from '../../../components/ui/Accordion';
 import { PROJECTS, type Project } from './data';
 import styles from './ProjectsSection.module.css';
 
@@ -37,9 +43,28 @@ const ProjectCard = ({ project, active }: { project: Project; active: boolean })
           </span>
           <span className={styles.windowTitle}>{project.title.toLowerCase().replaceAll(' ', '-')}</span>
         </div>
-        <div className={styles.previewIcon}>
-          <Icon size={30} />
-        </div>
+
+        {project.screenshot ? (
+          <img
+            src={project.screenshot}
+            alt={`Captura de ${project.title}`}
+            className={styles.previewImage}
+            loading="lazy"
+          />
+        ) : project.video ? (
+          <video
+            src={project.video}
+            className={styles.previewVideo}
+            controls
+            muted
+            loop
+            preload="metadata"
+          />
+        ) : (
+          <div className={styles.previewIcon}>
+            <Icon size={30} />
+          </div>
+        )}
       </div>
 
       <div className={styles.body}>
@@ -70,6 +95,38 @@ const ProjectCard = ({ project, active }: { project: Project; active: boolean })
             </a>
           )}
         </div>
+
+        <Accordion className={styles.details}>
+          <AccordionItem value="details">
+            <AccordionTrigger>Ver detalles</AccordionTrigger>
+            <AccordionContent>
+              <div className={styles.detailBlock}>
+                <span className={styles.detailLabel}>// Objetivo</span>
+                <p className={styles.detailText}>{project.objective}</p>
+              </div>
+
+              <div className={styles.detailBlock}>
+                <span className={styles.detailLabel}>// Logros</span>
+                <ul className={styles.detailList}>
+                  {project.highlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {project.codeSnippet && (
+                <div className={styles.detailBlock}>
+                  <span className={styles.detailLabel}>
+                    // Código · <span className={styles.detailFile}>{project.codeSnippet.filename}</span>
+                  </span>
+                  <pre className={styles.codeBlock}>
+                    <code>{project.codeSnippet.code}</code>
+                  </pre>
+                </div>
+              )}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </article>
   );
