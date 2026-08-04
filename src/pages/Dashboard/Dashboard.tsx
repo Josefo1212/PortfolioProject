@@ -3,6 +3,7 @@ import { useAuth } from '../../context/useAuth';
 import { useLogoutFlow } from '../../hooks/useLogoutFlow';
 import { Navbar } from '../../components/layout/Navbar';
 import { Footer } from '../../components/layout/Footer';
+import { ParticleField } from '../../components/background/ParticleField';
 import { WaitComponent } from '../../components/ui/WaitComponent';
 import { Container } from '../../components/ui/Container';
 import { Button } from '../../components/ui/Button';
@@ -26,6 +27,7 @@ export const Dashboard = () => {
 
   return (
     <>
+      <ParticleField />
       {isLoggingOut && <WaitComponent />}
       <Navbar />
       <main className={styles.main}>

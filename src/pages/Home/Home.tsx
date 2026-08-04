@@ -7,6 +7,7 @@ import { Footer } from '../../components/layout/Footer';
 import { Container } from '../../components/ui/Container';
 import { Button } from '../../components/ui/Button';
 import { useAuth } from '../../context/useAuth';
+import { ParticleField } from '../../components/background/ParticleField';
 import { SkillsSection } from './components/SkillsSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import styles from './Home.module.css';
@@ -39,6 +40,7 @@ export const Home = () => {
 
   return (
     <>
+      <ParticleField />
       <Navbar />
       <main className={styles.main}>
         <section id="home" className={styles.hero}>

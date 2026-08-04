@@ -13,6 +13,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  background-color: var(--bg-primary);
 }
 
 body {
@@ -21,7 +22,7 @@ body {
   font-weight: var(--weight-regular);
   line-height: var(--leading-normal);
   color: var(--text-primary);
-  background-color: var(--bg-primary);
+  background: transparent;
   min-height: 100vh;
   overflow-x: hidden;
 }
