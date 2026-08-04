@@ -13,11 +13,11 @@ interface TabsContextValue {
 
 const TabsContext = createContext<TabsContextValue | null>(null);
 
-function useTabsContext() {
+const useTabsContext = () => {
   const ctx = useContext(TabsContext);
   if (!ctx) throw new Error('Tabs compound components must be used within <Tabs>');
   return ctx;
-}
+};
 
 // === TABS (Container) ===
 

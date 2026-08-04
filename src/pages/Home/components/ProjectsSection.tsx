@@ -101,12 +101,12 @@ const ProjectCard = ({ project, active }: { project: Project; active: boolean })
             <AccordionTrigger>Ver detalles</AccordionTrigger>
             <AccordionContent>
               <div className={styles.detailBlock}>
-                <span className={styles.detailLabel}>// Objetivo</span>
+                <span className={styles.detailLabel}>Objetivo</span>
                 <p className={styles.detailText}>{project.objective}</p>
               </div>
 
               <div className={styles.detailBlock}>
-                <span className={styles.detailLabel}>// Logros</span>
+                <span className={styles.detailLabel}>Logros</span>
                 <ul className={styles.detailList}>
                   {project.highlights.map((item) => (
                     <li key={item}>{item}</li>
@@ -117,7 +117,7 @@ const ProjectCard = ({ project, active }: { project: Project; active: boolean })
               {project.codeSnippet && (
                 <div className={styles.detailBlock}>
                   <span className={styles.detailLabel}>
-                    // Código · <span className={styles.detailFile}>{project.codeSnippet.filename}</span>
+                    Código · <span className={styles.detailFile}>{project.codeSnippet.filename}</span>
                   </span>
                   <pre className={styles.codeBlock}>
                     <code>{project.codeSnippet.code}</code>

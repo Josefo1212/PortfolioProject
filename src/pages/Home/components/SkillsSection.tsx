@@ -50,6 +50,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: 'Git' },
       { name: 'Docker' },
       { name: 'pnpm' },
+      { name: 'postman'},
     ],
   },
 ];

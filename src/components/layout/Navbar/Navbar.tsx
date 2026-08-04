@@ -14,17 +14,22 @@ const NAV_LINKS = [
   { path: '/dashboard', label: 'Dashboard' },
 ] as const;
 
-function scrollToHash(hash: string) {
+type SectionId = 'home' | 'skills' | 'projects';
+
+const HOME_SECTIONS: SectionId[] = ['home', 'skills', 'projects'];
+
+const scrollToHash = (hash: string) => {
   const id = hash.replace('#', '');
   const el = document.getElementById(id);
   if (el) {
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-}
+};
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<SectionId | null>(null);
   const { user } = useAuth();
   const { isLoggingOut, handleLogout } = useLogoutFlow();
   const location = useLocation();
@@ -37,6 +42,27 @@ export const Navbar = () => {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    if (location.pathname !== '/home') return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (visible) {
+          setActiveSection(visible.target.id as SectionId);
+        }
+      },
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
+    );
+
+    HOME_SECTIONS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = isMobileOpen ? 'hidden' : '';
@@ -68,7 +94,7 @@ export const Navbar = () => {
 
     window.addEventListener('resize', updatePill);
     return () => window.removeEventListener('resize', updatePill);
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.hash, activeSection]);
 
   const closeMobile = useCallback(() => setIsMobileOpen(false), []);
 
@@ -98,12 +124,23 @@ export const Navbar = () => {
 
   const isActive = useCallback(
     (path: string) => {
-      if (path === '/home') return location.pathname === '/home' && !location.hash;
-      if (path === '/home#skills') return location.pathname === '/home' && location.hash === '#skills';
-      if (path === '/home#projects') return location.pathname === '/home' && location.hash === '#projects';
-      return location.pathname === path;
+      if (path === '/dashboard') return location.pathname === '/dashboard';
+
+      if (location.pathname !== '/home') return false;
+
+      if (activeSection) {
+        const section = activeSection as SectionId;
+        if (path === '/home') return section === 'home';
+        if (path === '/home#skills') return section === 'skills';
+        if (path === '/home#projects') return section === 'projects';
+      }
+
+      if (path === '/home') return !location.hash;
+      if (path === '/home#skills') return location.hash === '#skills';
+      if (path === '/home#projects') return location.hash === '#projects';
+      return false;
     },
-    [location.pathname, location.hash]
+    [location.pathname, location.hash, activeSection]
   );
 
   return (

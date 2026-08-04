@@ -41,7 +41,7 @@ export const Home = () => {
     <>
       <Navbar />
       <main className={styles.main}>
-        <section className={styles.hero}>
+        <section id="home" className={styles.hero}>
           <div className={styles.glow} aria-hidden="true" />
           <Container>
             <div className={styles.content}>

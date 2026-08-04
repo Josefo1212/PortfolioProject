@@ -35,36 +35,36 @@ const EMPTY_ERRORS: FieldErrors = {
   confirm: '',
 };
 
-function validateEmail(value: string): string {
+const validateEmail = (value: string): string => {
   if (!value.trim()) return 'El email es obligatorio';
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Formato de email inválido';
   return '';
-}
+};
 
-function validatePassword(value: string): string {
+const validatePassword = (value: string): string => {
   if (!value) return 'La contraseña es obligatoria';
   if (value.length < 8) return 'Mínimo 8 caracteres';
   if (value.length > 15) return 'Máximo 15 caracteres';
   return '';
-}
+};
 
-function validateFirstName(value: string): string {
+const validateFirstName = (value: string): string => {
   if (!value.trim()) return 'El nombre es obligatorio';
   if (value.trim().length < 2) return 'Mínimo 2 caracteres';
   return '';
-}
+};
 
-function validateLastName(value: string): string {
+const validateLastName = (value: string): string => {
   if (!value.trim()) return 'El apellido es obligatorio';
   if (value.trim().length < 2) return 'Mínimo 2 caracteres';
   return '';
-}
+};
 
-function validateConfirm(value: string, password: string): string {
+const validateConfirm = (value: string, password: string): string => {
   if (!value) return 'Confirma tu contraseña';
   if (value !== password) return 'Las contraseñas no coinciden';
   return '';
-}
+};
 
 export const AuthPage = () => {
   const [isFlipped, setIsFlipped] = useState(false);

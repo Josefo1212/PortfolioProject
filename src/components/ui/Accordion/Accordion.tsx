@@ -23,19 +23,19 @@ interface AccordionContextValue {
 
 const AccordionContext = createContext<AccordionContextValue | null>(null);
 
-function useAccordionContext() {
+const useAccordionContext = () => {
   const ctx = useContext(AccordionContext);
   if (!ctx) throw new Error('Accordion compound components must be used within <Accordion>');
   return ctx;
-}
+};
 
 const ItemContext = createContext<string | null>(null);
 
-function useItemValue() {
+const useItemValue = () => {
   const value = useContext(ItemContext);
   if (value === null) throw new Error('AccordionItem parts must be used within <AccordionItem>');
   return value;
-}
+};
 
 // === ACCORDION (Container) ===
 
