@@ -39,6 +39,7 @@ export const PROJECTS: Project[] = [
     gradient: 'preview1',
     repo: 'https://github.com/Josefo1212/VisualizerProject',
     live: 'https://visualizer-project-five.vercel.app',
+    video: '/visualizerProject.mp4',
     context:
       'Es una web que muestra el paso del tiempo de distintas maneras: relojes analógicos, digitales, cronómetros y contadores, todo envuelto en una estética de centro de juegos retro.',
     objective:
@@ -58,6 +59,7 @@ export const PROJECTS: Project[] = [
     tech: ['JavaScript', 'CSS', 'HTML'],
     gradient: 'preview2',
     repo: 'https://github.com/Josefo1212/PlaylistProject',
+    video: '/playlistProject.mp4',
     context:
       'Aplicación de listas de reproducción de canciones que guarda todo en IndexedDB, el almacenamiento local del navegador, para que los datos persistan sin un servidor.',
     objective:
@@ -78,6 +80,7 @@ export const PROJECTS: Project[] = [
     tech: ['JavaScript', 'React'],
     gradient: 'preview3',
     repo: 'https://github.com/Josefo1212/ContactsProject',
+    video: '/contactsProject.mp4',
     context:
       'Gestor de contactos que permite crear, editar y eliminar contactos, ofreciendo distintas formas de visualizar la lista: en tarjetas, en tabla y otras vistas.',
     objective:
