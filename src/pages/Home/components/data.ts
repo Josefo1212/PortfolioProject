@@ -101,6 +101,7 @@ export const PROJECTS: Project[] = [
     tech: ['TypeScript', 'Node.js', 'Express'],
     gradient: 'preview4',
     repo: 'https://github.com/Josefo1212/TaskFlow-Backend',
+    screenshot: '/taskflowProject.png',
     context:
       'Backend de una aplicación de gestión de tareas organizado como microservicios: cada dominio (usuarios, tareas, proyectos) es un servicio independiente que se comunica por HTTP.',
     objective:
@@ -121,6 +122,7 @@ export const PROJECTS: Project[] = [
     tech: ['C++'],
     gradient: 'preview5',
     repo: 'https://github.com/Josefo1212/Compilador',
+    screenshot: '/compiladorProject.png',
     context:
       'Compilador escrito en C++ que es capaz de traducir código C++: realiza análisis léxico, sintáctico y semántico sobre el código fuente.',
     objective:
@@ -162,6 +164,7 @@ struct Token {
     tech: ['TypeScript', 'Node.js', 'Express'],
     gradient: 'preview6',
     repo: 'https://github.com/Josefo1212/conservatorio-Backend',
+    screenshot: '/conservatorioProject.png',
     context:
       'API monolítica para gestionar la información de un conservatorio de música: estudiantes, profesores, instrumentos, cursos y matrículas.',
     objective:
@@ -182,6 +185,7 @@ struct Token {
     tech: ['Java'],
     gradient: 'preview7',
     repo: 'https://github.com/Josefo1212/ConnectionPoolProject',
+    screenshot: '/poolProject.png',
     context:
       'Implementación en Java de un pool de conexiones a bases de datos: las conexiones se crean una vez y se reutilizan, evitando el costo de abrir una por cada consulta.',
     objective:
@@ -220,6 +224,7 @@ public synchronized void releaseConnection(Connection conn) {
     gradient: 'preview8',
     repo: 'https://github.com/Josefo1212/finanzas-Frontend',
     live: 'https://pit-stop-financiero.vercel.app',
+    screenshot: '/finanzasProject.png',
     context:
       'Frontend de una aplicación de finanzas personales donde se registran ingresos y gastos, con una tematización propia del equipo F2.',
     objective:
