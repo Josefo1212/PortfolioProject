@@ -1,77 +1,57 @@
-# React + TypeScript + Vite
+# Portfolio · Jose Fereira
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portafolio web personal desarrollado con React 19 + TypeScript + Vite, con un design system propio y animaciones fluidas. Incluye autenticación local, dashboard con visualizaciones y landing con secciones animadas.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19** con React Compiler y Vite (SWC)
+- **TypeScript** (strict, type-checked)
+- **react-router v7** (rutas protegidas y públicas)
+- **framer-motion** (animaciones y transiciones)
+- **recharts** (gráficas del dashboard)
+- **lucide-react** (iconos)
+- **CSS Modules** (design system propio)
 
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Estructura
 
 ```
+src/
+├── components/
+│   ├── effects/       # ParticleField, ClickSpark, etc.
+│   ├── icons/         # Iconos SVG propios (GitHubIcon, Logo)
+│   ├── layout/        # Navbar, Footer
+│   └── ui/            # Design system: Button, Input, Tabs, Accordion, Badge...
+├── context/           # AuthProvider (localStorage) + useAuth
+├── hooks/             # useLogoutFlow, etc.
+├── pages/
+│   ├── Auth/          # Login / Registro (localStorage)
+│   ├── Home/          # Landing: hero, skills, proyectos, experiencia
+│   ├── Dashboard/     # Estadísticas, radar de skills, proyectos por categoría
+│   └── NotFound/      # Página 404
+└── main.tsx           # ErrorBoundary + RouterProvider
+```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Características
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Auth local**: registro y login con persistencia en `localStorage` (`portfolio_users`, `portfolio_session`), toggles de mostrar/ocultar contraseña y botón demo.
+- **Landing**: hero con efectos de partículas y click sparks, sección de skills con radar, proyectos con carrusel + tabs + acordeón (navegación por teclado), línea de tiempo de experiencia, navbar con scroll spy e indicador activo.
+- **Dashboard protegido**: tarjetas de estadísticas, radar de skills con recharts, gráfica de proyectos por categoría, logout con animación.
+- **UX**: página 404, ErrorBoundary global, diseño responsive, soporte de `prefers-reduced-motion`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Scripts
 
+```bash
+pnpm install     # instalar dependencias
+pnpm dev         # servidor de desarrollo con HMR
+pnpm build       # build de producción
+pnpm preview     # servir el build localmente
+pnpm lint        # ESLint type-aware + reglas React
+```
+
+## Lint
+
+El proyecto usa ESLint con reglas **type-aware** (`recommendedTypeChecked`) más los plugins [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) y [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) para reglas específicas de React 19.
+
+```bash
+pnpm lint
 ```

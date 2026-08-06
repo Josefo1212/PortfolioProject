@@ -8,7 +8,10 @@ const SESSION_KEY = 'portfolio_session';
 const getUsers = (): StoredUser[] => {
   try {
     const raw = localStorage.getItem(USERS_KEY);
-    return raw ? JSON.parse(raw) : [];
+    if (!raw) return [];
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed as StoredUser[];
   } catch {
     return [];
   }
@@ -21,7 +24,10 @@ const saveUsers = (users: StoredUser[]) => {
 const getSession = (): User | null => {
   try {
     const raw = localStorage.getItem(SESSION_KEY);
-    return raw ? JSON.parse(raw) : null;
+    if (!raw) return null;
+    const parsed: unknown = JSON.parse(raw);
+    if (typeof parsed !== 'object' || parsed === null) return null;
+    return parsed as User;
   } catch {
     return null;
   }
@@ -38,7 +44,7 @@ const saveSession = (user: User | null) => {
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(getSession);
 
-  const login = useCallback(async (email: string, password: string): Promise<AuthResult> => {
+  const login = useCallback((email: string, password: string): AuthResult => {
     const users = getUsers();
     const found = users.find((u) => u.email === email && u.password === password);
 
@@ -54,7 +60,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const register = useCallback(
-    async (firstName: string, lastName: string, email: string, password: string): Promise<AuthResult> => {
+    (firstName: string, lastName: string, email: string, password: string): AuthResult => {
       const users = getUsers();
 
       if (users.some((u) => u.email === email)) {
@@ -79,8 +85,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, register, logout }}>
+    <AuthContext value={{ user, isAuthenticated: !!user, login, register, logout }}>
       {children}
-    </AuthContext.Provider>
+    </AuthContext>
   );
 };

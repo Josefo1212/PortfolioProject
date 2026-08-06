@@ -14,7 +14,7 @@ export const useLogoutFlow = () => {
     setIsLoggingOut(true);
     setTimeout(() => {
       logout();
-      navigate('/');
+      void navigate('/');
     }, LOGOUT_DURATION);
   }, [isLoggingOut, logout, navigate]);
 

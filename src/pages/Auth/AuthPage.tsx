@@ -93,7 +93,6 @@ export const AuthPage = () => {
   const [showLoginPassword, setShowLoginPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [loginSuccess, setLoginSuccess] = useState('');
-  const [loginLoading, setLoginLoading] = useState(false);
 
   // Register state
   const [regFirstName, setRegFirstName] = useState('');
@@ -104,7 +103,6 @@ export const AuthPage = () => {
   const [regConfirm, setRegConfirm] = useState('');
   const [showRegConfirm, setShowRegConfirm] = useState(false);
   const [regError, setRegError] = useState('');
-  const [regLoading, setRegLoading] = useState(false);
 
   // Per-field errors
   const [loginFieldErrors, setLoginFieldErrors] = useState<typeof EMPTY_ERRORS>(EMPTY_ERRORS);
@@ -119,9 +117,10 @@ export const AuthPage = () => {
     const back = backRef.current;
     if (!front || !back) return;
 
-    const frontHeight = front.scrollHeight;
-    const backHeight = back.scrollHeight;
-    setCardHeight(Math.max(frontHeight, backHeight));
+    const frame = requestAnimationFrame(() => {
+      setCardHeight(Math.max(front.scrollHeight, back.scrollHeight));
+    });
+    return () => cancelAnimationFrame(frame);
   }, [
     loginEmail, loginPassword, loginError, loginFieldErrors,
     regFirstName, regLastName, regEmail, regPassword, regConfirm, regError, regFieldErrors,
@@ -175,7 +174,7 @@ export const AuthPage = () => {
     setRegFieldErrors((prev: typeof EMPTY_ERRORS) => ({ ...prev, confirm: validateConfirm(e.target.value, regPassword) }));
   };
 
-  const handleLogin = async (e: FormEvent) => {
+  const handleLogin = (e: FormEvent) => {
     e.preventDefault();
     setLoginError('');
     setLoginSuccess('');
@@ -188,9 +187,7 @@ export const AuthPage = () => {
 
     if (emailErr || passwordErr) return;
 
-    setLoginLoading(true);
-    const result = await login(loginEmail, loginPassword);
-    setLoginLoading(false);
+    const result = login(loginEmail, loginPassword);
     if (result.success) {
       setShowLoader(true);
       setTimeout(() => navigate('/home'), 2000);
@@ -199,7 +196,7 @@ export const AuthPage = () => {
     }
   };
 
-  const handleRegister = async (e: FormEvent) => {
+  const handleRegister = (e: FormEvent) => {
     e.preventDefault();
     setRegError('');
 
@@ -220,9 +217,7 @@ export const AuthPage = () => {
 
     if (firstNameErr || lastNameErr || emailErr || passwordErr || confirmErr) return;
 
-    setRegLoading(true);
-    const result = await register(regFirstName.trim(), regLastName.trim(), regEmail, regPassword);
-    setRegLoading(false);
+    const result = register(regFirstName.trim(), regLastName.trim(), regEmail, regPassword);
 
     if (result.success) {
       setIsFlipped(false);
@@ -333,7 +328,6 @@ export const AuthPage = () => {
                     type="submit"
                     variant="glow"
                     size="lg"
-                    isLoading={loginLoading}
                     leftIcon={<LogIn size={18} />}
                     className={styles.submitBtn}
                   >
@@ -456,7 +450,6 @@ export const AuthPage = () => {
                     type="submit"
                     variant="glow"
                     size="lg"
-                    isLoading={regLoading}
                     leftIcon={<UserPlus size={18} />}
                     className={styles.submitBtn}
                   >

@@ -1,6 +1,6 @@
 import {
   createContext,
-  useContext,
+  use,
   useState,
   useCallback,
   useRef,
@@ -24,7 +24,7 @@ interface AccordionContextValue {
 const AccordionContext = createContext<AccordionContextValue | null>(null);
 
 const useAccordionContext = () => {
-  const ctx = useContext(AccordionContext);
+  const ctx = use(AccordionContext);
   if (!ctx) throw new Error('Accordion compound components must be used within <Accordion>');
   return ctx;
 };
@@ -32,7 +32,7 @@ const useAccordionContext = () => {
 const ItemContext = createContext<string | null>(null);
 
 const useItemValue = () => {
-  const value = useContext(ItemContext);
+  const value = use(ItemContext);
   if (value === null) throw new Error('AccordionItem parts must be used within <AccordionItem>');
   return value;
 };
@@ -74,11 +74,11 @@ export const Accordion = ({
   }, []);
 
   return (
-    <AccordionContext.Provider value={{ isOpen, toggleItem, registerTrigger, triggerRefs }}>
+    <AccordionContext value={{ isOpen, toggleItem, registerTrigger, triggerRefs }}>
       <div className={`${styles.accordion} ${className}`}>
         {children}
       </div>
-    </AccordionContext.Provider>
+    </AccordionContext>
   );
 };
 
@@ -95,11 +95,11 @@ export const AccordionItem = ({ value, children, className = '' }: AccordionItem
   const open = isOpen(value);
 
   return (
-    <ItemContext.Provider value={value}>
+    <ItemContext value={value}>
       <div className={`${styles.item} ${open ? styles.itemOpen : ''} ${className}`}>
         {children}
       </div>
-    </ItemContext.Provider>
+    </ItemContext>
   );
 };
 
@@ -133,7 +133,7 @@ export const AccordionTrigger = ({ children, className = '' }: AccordionTriggerP
     else return;
 
     e.preventDefault();
-    triggerRefs.current.get(next as string)?.focus();
+    triggerRefs.current.get(next)?.focus();
   };
 
   return (

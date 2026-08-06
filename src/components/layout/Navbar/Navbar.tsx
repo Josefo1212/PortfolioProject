@@ -75,7 +75,7 @@ export const Navbar = () => {
     if (!container) return;
 
     const updatePill = () => {
-      const activeEl = container.querySelector('[data-active="true"]') as HTMLElement | null;
+      const activeEl = container.querySelector('[data-active="true"]');
       const pill = pillRef.current;
       if (!activeEl || !pill) {
         pill?.style.setProperty('--pill-opacity', '0');
@@ -114,7 +114,7 @@ export const Navbar = () => {
       if (location.pathname === basePath) {
         scrollToHash(hash);
       } else {
-        navigate(path);
+        void navigate(path);
         setTimeout(() => scrollToHash(hash), 100);
       }
     } else if (location.pathname === path) {
@@ -129,7 +129,7 @@ export const Navbar = () => {
       if (location.pathname !== '/home') return false;
 
       if (activeSection) {
-        const section = activeSection as SectionId;
+        const section = activeSection;
         if (path === '/home') return section === 'home';
         if (path === '/home#skills') return section === 'skills';
         if (path === '/home#projects') return section === 'projects';

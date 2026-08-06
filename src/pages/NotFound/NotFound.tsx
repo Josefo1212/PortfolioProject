@@ -9,7 +9,9 @@ export const NotFound = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  const goHome = () => navigate(isAuthenticated ? '/home' : '/');
+  const goHome = () => {
+    void navigate(isAuthenticated ? '/home' : '/');
+  };
 
   return (
     <div className={styles.page}>

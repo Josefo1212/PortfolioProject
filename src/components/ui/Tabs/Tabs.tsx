@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, useRef, useEffect, type ReactNode, type RefObject } from 'react';
+import { createContext, use, useState, useCallback, useRef, useEffect, type ReactNode, type RefObject } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Tabs.module.css';
 
@@ -14,7 +14,7 @@ interface TabsContextValue {
 const TabsContext = createContext<TabsContextValue | null>(null);
 
 const useTabsContext = () => {
-  const ctx = useContext(TabsContext);
+  const ctx = use(TabsContext);
   if (!ctx) throw new Error('Tabs compound components must be used within <Tabs>');
   return ctx;
 };
@@ -37,11 +37,11 @@ export const Tabs = ({ children, defaultValue, className = '' }: TabsProps) => {
   }, []);
 
   return (
-    <TabsContext.Provider value={{ activeTab, setActiveTab, registerTab, tabRefs }}>
+    <TabsContext value={{ activeTab, setActiveTab, registerTab, tabRefs }}>
       <div className={`${styles.tabs} ${className}`}>
         {children}
       </div>
-    </TabsContext.Provider>
+    </TabsContext>
   );
 };
 

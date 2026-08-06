@@ -12,8 +12,8 @@ export interface StoredUser extends User {
 export interface AuthContextValue {
   user: User | null;
   isAuthenticated: boolean;
-  login: (email: string, password: string) => Promise<AuthResult>;
-  register: (firstName: string, lastName: string, email: string, password: string) => Promise<AuthResult>;
+  login: (email: string, password: string) => AuthResult;
+  register: (firstName: string, lastName: string, email: string, password: string) => AuthResult;
   logout: () => void;
 }
 
