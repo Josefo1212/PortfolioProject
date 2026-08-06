@@ -11,10 +11,10 @@ import { Services } from './components/Services';
 import styles from './Dashboard.module.css';
 
 const STATS = [
-  { icon: Code2, label: 'Líneas de Código', value: 85, suffix: 'k+' },
+  { icon: Code2, label: 'Líneas de Código', value: 70, suffix: 'k+' },
   { icon: Languages, label: 'Lenguajes', value: 5, suffix: '' },
   { icon: FolderGit2, label: 'Proyectos', value: 50, suffix: '' },
-  { icon: Boxes, label: 'Componentes', value: 50, suffix: '+' },
+  { icon: Boxes, label: 'Componentes', value: 28, suffix: '' },
   { icon: Layers, label: 'Tecnologías', value: 12, suffix: '' },
 ] as const;
 
