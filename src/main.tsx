@@ -4,9 +4,12 @@ import './styles/tokens.css'
 import './styles/animations.css'
 import './styles/globals.css'
 import App from './App.tsx'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </StrictMode>,
 )

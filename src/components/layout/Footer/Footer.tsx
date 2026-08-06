@@ -1,5 +1,4 @@
 import { Mail } from 'lucide-react';
-import { useAuth } from '../../../context/useAuth';
 import { Container } from '../../ui/Container';
 import styles from './Footer.module.css';
 
@@ -36,8 +35,7 @@ const SOCIAL_LINKS = [
 ] as const;
 
 export const Footer = () => {
-  const { user } = useAuth();
-  const fullName = user ? `${user.firstName} ${user.lastName}` : 'Developer';
+  const fullName = 'Jose Fereira';
 
   return (
     <footer className={styles.footer}>

@@ -6,7 +6,6 @@ import { Navbar } from '../../components/layout/Navbar';
 import { Footer } from '../../components/layout/Footer';
 import { Container } from '../../components/ui/Container';
 import { Button } from '../../components/ui/Button';
-import { useAuth } from '../../context/useAuth';
 import { ParticleField } from '../../components/background/ParticleField';
 import { SkillsSection } from './components/SkillsSection';
 import { ProjectsSection } from './components/ProjectsSection';
@@ -22,7 +21,6 @@ const fadeUp: Variants = {
 };
 
 export const Home = () => {
-  const { user } = useAuth();
   const location = useLocation();
 
   useEffect(() => {
@@ -64,7 +62,7 @@ export const Home = () => {
                 custom={1}
                 variants={fadeUp}
               >
-                {user ? `${user.firstName} ${user.lastName}` : 'Developer'}
+                Jose Fereira
               </motion.h1>
 
               <motion.p
