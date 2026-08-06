@@ -25,6 +25,6 @@ export const Badge = ({
         <Icon size={size === 'xs' ? 10 : size === 'sm' ? 12 : 14} />
       </span>
     )}
-    <span className={styles.label}>{children}</span>
+    <span>{children}</span>
   </span>
 );

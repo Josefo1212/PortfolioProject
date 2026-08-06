@@ -26,8 +26,9 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     skills: [
       { name: 'React' },
       { name: 'TypeScript' },
-      { name: 'Angular' },
       { name: 'HTML5' },
+      { name: 'CSS' },
+      { name: 'Angular' },
       { name: 'JavaScript' },    
     ],
   },
@@ -52,6 +53,8 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: 'Docker' },
       { name: 'pnpm' },
       { name: 'postman'},
+      { name: 'Pm2' },
+      { name: 'nginx' },
     ],
   },
 ];

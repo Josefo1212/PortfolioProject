@@ -7,11 +7,9 @@ import { Footer } from '../../components/layout/Footer';
 import { Container } from '../../components/ui/Container';
 import { Button } from '../../components/ui/Button';
 import { TypeWriter } from '../../components/ui/TypeWriter/TypeWriter';
-import { Marquee } from '../../components/ui/Marquee/Marquee';
 import { ParticleField } from '../../components/background/ParticleField';
 import { SkillsSection } from './components/SkillsSection';
 import { ProjectsSection } from './components/ProjectsSection';
-import { TECH_STRIP } from './components/data';
 import styles from './Home.module.css';
 
 const fadeUp: Variants = {
@@ -119,17 +117,6 @@ export const Home = () => {
             <ArrowDown size={20} className={styles.scrollArrow} />
           </motion.div>
         </section>
-
-        <div className={styles.techStrip} aria-hidden="true">
-          <Marquee speed={30}>
-            {TECH_STRIP.map(({ name, icon: Icon }) => (
-              <span key={name} className={styles.techItem}>
-                <Icon size={14} />
-                {name}
-              </span>
-            ))}
-          </Marquee>
-        </div>
 
         <section id="skills" className={styles.section}>
           <Container>

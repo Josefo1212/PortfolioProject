@@ -91,12 +91,9 @@ interface AccordionItemProps {
 }
 
 export const AccordionItem = ({ value, children, className = '' }: AccordionItemProps) => {
-  const { isOpen } = useAccordionContext();
-  const open = isOpen(value);
-
   return (
     <ItemContext value={value}>
-      <div className={`${styles.item} ${open ? styles.itemOpen : ''} ${className}`}>
+      <div className={`${styles.item} ${className}`}>
         {children}
       </div>
     </ItemContext>
