@@ -8,7 +8,6 @@ Portafolio web personal desarrollado con React 19 + TypeScript + Vite, con un de
 - **TypeScript** (strict, type-checked)
 - **react-router v7** (rutas protegidas y públicas)
 - **framer-motion** (animaciones y transiciones)
-- **recharts** (gráficas del dashboard)
 - **lucide-react** (iconos)
 - **CSS Modules** (design system propio)
 
@@ -26,7 +25,7 @@ src/
 ├── pages/
 │   ├── Auth/          # Login / Registro (localStorage)
 │   ├── Home/          # Landing: hero, skills, proyectos, experiencia
-│   ├── Dashboard/     # Estadísticas, radar de skills, proyectos por categoría
+│   ├── Dashboard/     # Estadísticas, top stack, lenguajes utilizados, servicios
 │   └── NotFound/      # Página 404
 └── main.tsx           # ErrorBoundary + RouterProvider
 ```
@@ -34,8 +33,8 @@ src/
 ## Características
 
 - **Auth local**: registro y login con persistencia en `localStorage` (`portfolio_users`, `portfolio_session`), toggles de mostrar/ocultar contraseña y botón demo.
-- **Landing**: hero con partículas, click sparks y subtítulo con efecto **typewriter**; cinta **marquee** de tecnologías; skills con tabs; proyectos con carrusel, **tilt 3D** con glare y acordeón (navegación por teclado); **sección de contacto** con copiar email.
-- **Dashboard protegido**: tarjetas de estadísticas con **count-up** animado, radar de skills con recharts, gráfica de proyectos por categoría, logout con animación.
+- **Landing**: hero con partículas, click sparks y subtítulo con efecto **typewriter**; cinta **marquee** de tecnologías; skills con tabs; proyectos con carrusel, **tilt 3D** con glare y acordeón (navegación por teclado).
+- **Dashboard protegido**: tarjetas de estadísticas con **count-up** animado, ranking **Top Stack** y **Lenguajes utilizados** con barras animadas (degradado del design system), logout con animación.
 - **UX**: reveals con `whileInView`, página 404, ErrorBoundary global, diseño responsive, soporte de `prefers-reduced-motion`.
 
 ## Scripts

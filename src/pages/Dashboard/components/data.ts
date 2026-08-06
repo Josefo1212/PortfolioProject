@@ -1,9 +1,14 @@
 import { type ElementType } from 'react';
 import { Braces, Code2, Database, LayoutDashboard, Server } from 'lucide-react';
 
-export interface SkillLevel {
-  skill: string;
-  level: number;
+export interface StackItem {
+  name: string;
+  value: number;
+}
+
+export interface LanguageItem {
+  name: string;
+  value: number;
 }
 
 export interface Service {
@@ -12,11 +17,19 @@ export interface Service {
   description: string;
 }
 
-export const SKILL_LEVELS: SkillLevel[] = [
-  { skill: 'Frontend', level: 95 },
-  { skill: 'Backend', level: 85 },
-  { skill: 'Bases de Datos', level: 80 },
-  { skill: 'UI / UX', level: 75 },
+export const TOP_STACK: StackItem[] = [
+  { name: 'Node.js', value: 12 },
+  { name: 'React', value: 8 },
+  { name: 'PostgreSQL', value: 5 },
+  { name: 'Angular', value: 2 },
+];
+
+export const LANGUAGES: LanguageItem[] = [
+  { name: 'TypeScript', value: 14 },
+  { name: 'JavaScript', value: 10 },
+  { name: 'Java', value: 8 },
+  { name: 'C++', value: 6 },
+  { name: 'SQL', value: 5 },
 ];
 
 export const SERVICES: Service[] = [

@@ -5,8 +5,8 @@ import { Footer } from '../../components/layout/Footer';
 import { ParticleField } from '../../components/background/ParticleField';
 import { Container } from '../../components/ui/Container';
 import { StatCard } from './components/StatCard';
-import { SkillsRadar } from './components/SkillsRadar';
-import { CategoryChart } from './components/CategoryChart';
+import { TopStack } from './components/TopStack';
+import { LanguagesChart } from './components/LanguagesChart';
 import { Services } from './components/Services';
 import styles from './Dashboard.module.css';
 
@@ -43,8 +43,8 @@ export const Dashboard = () => {
           </div>
 
           <div className={styles.chartsGrid}>
-            <SkillsRadar />
-            <CategoryChart />
+            <TopStack />
+            <LanguagesChart />
           </div>
 
           <Services />

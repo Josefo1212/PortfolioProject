@@ -11,7 +11,6 @@ import { Marquee } from '../../components/ui/Marquee/Marquee';
 import { ParticleField } from '../../components/background/ParticleField';
 import { SkillsSection } from './components/SkillsSection';
 import { ProjectsSection } from './components/ProjectsSection';
-import { ContactSection } from './components/ContactSection';
 import { TECH_STRIP } from './components/data';
 import styles from './Home.module.css';
 
@@ -141,12 +140,6 @@ export const Home = () => {
         <section id="projects" className={styles.section}>
           <Container>
             <ProjectsSection />
-          </Container>
-        </section>
-
-        <section id="contact" className={styles.section}>
-          <Container>
-            <ContactSection />
           </Container>
         </section>
       </main>
