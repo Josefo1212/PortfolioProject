@@ -1,4 +1,4 @@
-import { Boxes, Code2, FolderGit2, Languages, Layers, LogOut } from 'lucide-react';
+import { Boxes, Code2, FolderGit2, Languages, Layers } from 'lucide-react';
 import { useAuth } from '../../context/useAuth';
 import { useLogoutFlow } from '../../hooks/useLogoutFlow';
 import { Navbar } from '../../components/layout/Navbar';
@@ -6,10 +6,9 @@ import { Footer } from '../../components/layout/Footer';
 import { ParticleField } from '../../components/background/ParticleField';
 import { WaitComponent } from '../../components/ui/WaitComponent';
 import { Container } from '../../components/ui/Container';
-import { Button } from '../../components/ui/Button';
 import { StatCard } from './components/StatCard';
-import { ProjectsChart } from './components/ProjectsChart';
-import { LinesChart } from './components/LinesChart';
+import { SkillsRadar } from './components/SkillsRadar';
+import { StackDonut } from './components/StackDonut';
 import { Services } from './components/Services';
 import styles from './Dashboard.module.css';
 
@@ -23,7 +22,7 @@ const STATS = [
 
 export const Dashboard = () => {
   const { user } = useAuth();
-  const { isLoggingOut, handleLogout } = useLogoutFlow();
+  const { isLoggingOut } = useLogoutFlow();
 
   return (
     <>
@@ -39,15 +38,6 @@ export const Dashboard = () => {
               </h1>
               <p className={styles.subtitle}>Este es tu panel de control</p>
             </div>
-
-            <Button
-              variant="secondary"
-              leftIcon={<LogOut size={16} />}
-              onClick={handleLogout}
-              className={styles.logoutBtn}
-            >
-              Cerrar Sesión
-            </Button>
           </header>
 
           <div className={styles.statsGrid}>
@@ -57,8 +47,8 @@ export const Dashboard = () => {
           </div>
 
           <div className={styles.chartsGrid}>
-            <ProjectsChart />
-            <LinesChart />
+            <SkillsRadar />
+            <StackDonut />
           </div>
 
           <Services />

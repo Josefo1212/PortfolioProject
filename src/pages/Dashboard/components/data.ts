@@ -1,14 +1,9 @@
 import { type ElementType } from 'react';
 import { Braces, Code2, Database, LayoutDashboard, Server } from 'lucide-react';
 
-export interface YearlyProjects {
-  year: string;
-  projects: number;
-}
-
-export interface LinesByLanguage {
-  language: string;
-  lines: number;
+export interface SkillLevel {
+  skill: string;
+  level: number;
 }
 
 export interface Service {
@@ -17,22 +12,11 @@ export interface Service {
   description: string;
 }
 
-export const PROJECTS_BY_YEAR: YearlyProjects[] = [
-  { year: '2020', projects: 1 },
-  { year: '2021', projects: 2 },
-  { year: '2022', projects: 3 },
-  { year: '2023', projects: 4 },
-  { year: '2024', projects: 6 },
-  { year: '2025', projects: 8 },
-  { year: '2026', projects: 10 },
-];
-
-export const LINES_BY_LANGUAGE: LinesByLanguage[] = [
-  { language: 'TypeScript', lines: 42000 },
-  { language: 'JavaScript', lines: 26000 },
-  { language: 'Python', lines: 12000 },
-  { language: 'HTML/CSS', lines: 8000 },
-  { language: 'SQL', lines: 6000 },
+export const SKILL_LEVELS: SkillLevel[] = [
+  { skill: 'Frontend', level: 95 },
+  { skill: 'Backend', level: 85 },
+  { skill: 'Bases de Datos', level: 80 },
+  { skill: 'UI / UX', level: 75 },
 ];
 
 export const SERVICES: Service[] = [

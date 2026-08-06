@@ -161,6 +161,30 @@
   margin-top: var(--space-xs);
 }
 
+/* === PASSWORD TOGGLE === */
+
+.passwordToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.passwordToggle:hover {
+  color: var(--accent-primary);
+}
+
+.passwordToggle:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
 /* === FOOTER === */
 
 .footer {

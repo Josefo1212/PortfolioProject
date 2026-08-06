@@ -10,9 +10,11 @@ interface ChartTooltipProps {
 export const ChartTooltip = ({ active, label, payload, unit = '' }: ChartTooltipProps) => {
   if (!active || !payload?.length) return null;
 
+  const displayLabel = label ?? payload[0].name ?? '';
+
   return (
     <div className={styles.tooltip}>
-      <span className={styles.tooltipLabel}>{label}</span>
+      <span className={styles.tooltipLabel}>{displayLabel}</span>
       <span className={styles.tooltipValue}>
         {payload[0].value}
         {unit}

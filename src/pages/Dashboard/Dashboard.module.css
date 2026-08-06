@@ -28,10 +28,6 @@
   color: var(--text-secondary);
 }
 
-.logoutBtn {
-  flex-shrink: 0;
-}
-
 /* === STATS === */
 
 .statsGrid {

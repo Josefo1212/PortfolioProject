@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect, type FormEvent, type FocusEvent } from 'react';
 import { useNavigate } from 'react-router';
-import { LogIn, UserPlus } from 'lucide-react';
+import { LogIn, UserPlus, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../../context/useAuth';
 import { GlassPanel } from '../../components/ui/GlassPanel';
@@ -18,6 +18,18 @@ const inputVariants = {
     transition: { delay: 0.3 + i * 0.08, duration: 0.35, ease: [0.4, 0, 0.2, 1] as const },
   }),
 };
+
+const PasswordToggle = ({ visible, onToggle }: { visible: boolean; onToggle: () => void }) => (
+  <button
+    type="button"
+    className={styles.passwordToggle}
+    onClick={onToggle}
+    aria-label={visible ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+    aria-pressed={visible}
+  >
+    {visible ? <EyeOff size={16} /> : <Eye size={16} />}
+  </button>
+);
 
 type FieldErrors = {
   email: string;
@@ -78,6 +90,7 @@ export const AuthPage = () => {
   // Login state
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [loginSuccess, setLoginSuccess] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
@@ -87,7 +100,9 @@ export const AuthPage = () => {
   const [regLastName, setRegLastName] = useState('');
   const [regEmail, setRegEmail] = useState('');
   const [regPassword, setRegPassword] = useState('');
+  const [showRegPassword, setShowRegPassword] = useState(false);
   const [regConfirm, setRegConfirm] = useState('');
+  const [showRegConfirm, setShowRegConfirm] = useState(false);
   const [regError, setRegError] = useState('');
   const [regLoading, setRegLoading] = useState(false);
 
@@ -277,12 +292,18 @@ export const AuthPage = () => {
                 <motion.div custom={1} variants={inputVariants} initial="hidden" animate="visible">
                   <Input
                     label="Contraseña"
-                    type="password"
+                    type={showLoginPassword ? 'text' : 'password'}
                     placeholder="••••••••"
                     value={loginPassword}
                     onChange={(e) => { setLoginPassword(e.target.value); setLoginSuccess(''); }}
                     onBlur={handleLoginPasswordBlur}
                     error={loginTouched.password ? loginFieldErrors.password : undefined}
+                    rightIcon={
+                      <PasswordToggle
+                        visible={showLoginPassword}
+                        onToggle={() => setShowLoginPassword((v) => !v)}
+                      />
+                    }
                     required
                   />
                 </motion.div>
@@ -385,25 +406,37 @@ export const AuthPage = () => {
                 <motion.div custom={3} variants={inputVariants} initial="hidden" animate="visible">
                   <Input
                     label="Contraseña"
-                    type="password"
+                    type={showRegPassword ? 'text' : 'password'}
                     placeholder="••••••••"
                     value={regPassword}
                     onChange={(e) => setRegPassword(e.target.value)}
                     onBlur={handleRegPasswordBlur}
                     error={regTouched.password ? regFieldErrors.password : undefined}
                     hint="Entre 8 y 15 caracteres"
+                    rightIcon={
+                      <PasswordToggle
+                        visible={showRegPassword}
+                        onToggle={() => setShowRegPassword((v) => !v)}
+                      />
+                    }
                     required
                   />
                 </motion.div>
                 <motion.div custom={4} variants={inputVariants} initial="hidden" animate="visible">
                   <Input
                     label="Confirmar Contraseña"
-                    type="password"
+                    type={showRegConfirm ? 'text' : 'password'}
                     placeholder="••••••••"
                     value={regConfirm}
                     onChange={(e) => setRegConfirm(e.target.value)}
                     onBlur={handleRegConfirmBlur}
                     error={regTouched.confirm ? regFieldErrors.confirm : undefined}
+                    rightIcon={
+                      <PasswordToggle
+                        visible={showRegConfirm}
+                        onToggle={() => setShowRegConfirm((v) => !v)}
+                      />
+                    }
                     required
                   />
                 </motion.div>
