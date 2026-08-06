@@ -34,9 +34,9 @@ src/
 ## Características
 
 - **Auth local**: registro y login con persistencia en `localStorage` (`portfolio_users`, `portfolio_session`), toggles de mostrar/ocultar contraseña y botón demo.
-- **Landing**: hero con efectos de partículas y click sparks, sección de skills con radar, proyectos con carrusel + tabs + acordeón (navegación por teclado), línea de tiempo de experiencia, navbar con scroll spy e indicador activo.
-- **Dashboard protegido**: tarjetas de estadísticas, radar de skills con recharts, gráfica de proyectos por categoría, logout con animación.
-- **UX**: página 404, ErrorBoundary global, diseño responsive, soporte de `prefers-reduced-motion`.
+- **Landing**: hero con partículas, click sparks y subtítulo con efecto **typewriter**; cinta **marquee** de tecnologías; skills con tabs; proyectos con carrusel, **tilt 3D** con glare y acordeón (navegación por teclado); **sección de contacto** con copiar email.
+- **Dashboard protegido**: tarjetas de estadísticas con **count-up** animado, radar de skills con recharts, gráfica de proyectos por categoría, logout con animación.
+- **UX**: reveals con `whileInView`, página 404, ErrorBoundary global, diseño responsive, soporte de `prefers-reduced-motion`.
 
 ## Scripts
 

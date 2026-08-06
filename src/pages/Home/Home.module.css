@@ -86,6 +86,30 @@
   animation: float 2s ease-in-out infinite;
 }
 
+/* === TECH STRIP === */
+
+.techStrip {
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  padding: var(--space-md) 0;
+}
+
+.techItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: 0 var(--space-xl);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.techItem svg {
+  color: var(--accent-primary);
+}
+
 /* === SECTIONS === */
 
 .section {

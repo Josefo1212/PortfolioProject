@@ -11,12 +11,13 @@ const NAV_LINKS = [
   { path: '/home', label: 'Inicio' },
   { path: '/home#skills', label: 'Skills' },
   { path: '/home#projects', label: 'Proyectos' },
+  { path: '/home#contact', label: 'Contacto' },
   { path: '/dashboard', label: 'Dashboard' },
 ] as const;
 
-type SectionId = 'home' | 'skills' | 'projects';
+type SectionId = 'home' | 'skills' | 'projects' | 'contact';
 
-const HOME_SECTIONS: SectionId[] = ['home', 'skills', 'projects'];
+const HOME_SECTIONS: SectionId[] = ['home', 'skills', 'projects', 'contact'];
 
 const scrollToHash = (hash: string) => {
   const id = hash.replace('#', '');
@@ -133,11 +134,13 @@ export const Navbar = () => {
         if (path === '/home') return section === 'home';
         if (path === '/home#skills') return section === 'skills';
         if (path === '/home#projects') return section === 'projects';
+        if (path === '/home#contact') return section === 'contact';
       }
 
       if (path === '/home') return !location.hash;
       if (path === '/home#skills') return location.hash === '#skills';
       if (path === '/home#projects') return location.hash === '#projects';
+      if (path === '/home#contact') return location.hash === '#contact';
       return false;
     },
     [location.pathname, location.hash, activeSection]

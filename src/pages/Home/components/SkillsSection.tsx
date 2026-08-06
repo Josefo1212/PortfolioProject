@@ -4,6 +4,7 @@ import { Monitor, Server, Wrench } from 'lucide-react';
 import { Tabs, TabList, Tab, TabPanel } from '../../../components/ui/Tabs';
 import { Badge } from '../../../components/ui/Badge';
 import { SectionTitle } from '../../../components/ui/SectionTitle';
+import { Reveal } from '../../../components/ui/Reveal/Reveal';
 import styles from './SkillsSection.module.css';
 
 interface Skill {
@@ -67,45 +68,49 @@ const badgeVariants: Variants = {
 export const SkillsSection = () => {
   return (
     <div className={styles.wrapper}>
-      <SectionTitle
-        label="// Skills"
-        title="Habilidades"
-        description="Tecnologías y herramientas que domino."
-        alignment="center"
-      />
+      <Reveal>
+        <SectionTitle
+          label="// Skills"
+          title="Habilidades"
+          description="Tecnologías y herramientas que domino."
+          alignment="center"
+        />
+      </Reveal>
 
-      <Tabs defaultValue={SKILL_CATEGORIES[0].id}>
-        <TabList className={styles.tabList}>
+      <Reveal delay={0.15}>
+        <Tabs defaultValue={SKILL_CATEGORIES[0].id}>
+          <TabList className={styles.tabList}>
+            {SKILL_CATEGORIES.map((cat) => (
+              <Tab key={cat.id} value={cat.id}>
+                <span className={styles.tabContent}>
+                  <cat.icon size={14} />
+                  {cat.label}
+                </span>
+              </Tab>
+            ))}
+          </TabList>
+
           {SKILL_CATEGORIES.map((cat) => (
-            <Tab key={cat.id} value={cat.id}>
-              <span className={styles.tabContent}>
-                <cat.icon size={14} />
-                {cat.label}
-              </span>
-            </Tab>
+            <TabPanel key={cat.id} value={cat.id}>
+              <div className={styles.grid}>
+                {cat.skills.map((skill, i) => (
+                  <motion.div
+                    key={skill.name}
+                    custom={i}
+                    variants={badgeVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <Badge variant="default" size="md" className={styles.skillBadge}>
+                      {skill.name}
+                    </Badge>
+                  </motion.div>
+                ))}
+              </div>
+            </TabPanel>
           ))}
-        </TabList>
-
-        {SKILL_CATEGORIES.map((cat) => (
-          <TabPanel key={cat.id} value={cat.id}>
-            <div className={styles.grid}>
-              {cat.skills.map((skill, i) => (
-                <motion.div
-                  key={skill.name}
-                  custom={i}
-                  variants={badgeVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <Badge variant="default" size="md" className={styles.skillBadge}>
-                    {skill.name}
-                  </Badge>
-                </motion.div>
-              ))}
-            </div>
-          </TabPanel>
-        ))}
-      </Tabs>
+        </Tabs>
+      </Reveal>
     </div>
   );
 };

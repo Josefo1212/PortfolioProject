@@ -1,16 +1,18 @@
 import { type ElementType } from 'react';
 import { motion } from 'framer-motion';
 import { GlassPanel } from '../../../components/ui/GlassPanel';
+import { CountUp } from '../../../components/ui/CountUp/CountUp';
 import styles from './StatCard.module.css';
 
 interface StatCardProps {
   icon: ElementType;
   label: string;
-  value: string;
+  value: number;
+  suffix: string;
   index: number;
 }
 
-export const StatCard = ({ icon: Icon, label, value, index }: StatCardProps) => (
+export const StatCard = ({ icon: Icon, label, value, suffix, index }: StatCardProps) => (
   <motion.div
     initial={{ opacity: 0, y: 16 }}
     animate={{ opacity: 1, y: 0 }}
@@ -21,7 +23,9 @@ export const StatCard = ({ icon: Icon, label, value, index }: StatCardProps) => 
         <Icon size={18} />
       </div>
 
-      <span className={styles.value}>{value}</span>
+      <span className={styles.value}>
+        <CountUp value={value} suffix={suffix} />
+      </span>
       <span className={styles.label}>{label}</span>
     </GlassPanel>
   </motion.div>

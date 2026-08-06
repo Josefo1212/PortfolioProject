@@ -4,6 +4,8 @@ import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { GitHubIcon } from '../../../components/icons';
 import { Badge } from '../../../components/ui/Badge';
 import { SectionTitle } from '../../../components/ui/SectionTitle';
+import { Reveal } from '../../../components/ui/Reveal/Reveal';
+import { useTilt } from '../../../hooks/useTilt';
 import {
   Accordion,
   AccordionItem,
@@ -26,9 +28,15 @@ const fadeUp: Variants = {
 
 const ProjectCard = ({ project, active }: { project: Project; active: boolean }) => {
   const Icon = project.icon;
+  const { tiltRef, handleMouseMove, handleMouseLeave } = useTilt();
 
   return (
-    <article className={`${styles.card} ${active ? styles.cardActive : ''}`}>
+    <article
+      ref={tiltRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`${styles.card} ${active ? styles.cardActive : ''}`}
+    >
       <div className={`${styles.preview} ${styles[project.gradient]}`}>
         <div className={styles.windowBar}>
           <span className={styles.windowDots}>
@@ -171,14 +179,17 @@ export const ProjectsSection = () => {
 
   return (
     <div className={styles.wrapper}>
-      <SectionTitle
-        label="// Proyectos"
-        title="Proyectos Destacados"
-        description="Una selección de proyectos en los que he trabajado."
-        alignment="center"
-      />
+      <Reveal>
+        <SectionTitle
+          label="// Proyectos"
+          title="Proyectos Destacados"
+          description="Una selección de proyectos en los que he trabajado."
+          alignment="center"
+        />
+      </Reveal>
 
-      <div ref={viewportRef} className={styles.viewport}>
+      <Reveal delay={0.15}>
+        <div ref={viewportRef} className={styles.viewport}>
         <motion.div
           className={styles.track}
           drag="x"
@@ -212,6 +223,7 @@ export const ProjectsSection = () => {
           ))}
         </motion.div>
       </div>
+      </Reveal>
 
       <div className={styles.controls}>
         <button

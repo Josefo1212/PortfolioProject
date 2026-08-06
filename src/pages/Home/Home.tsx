@@ -6,9 +6,13 @@ import { Navbar } from '../../components/layout/Navbar';
 import { Footer } from '../../components/layout/Footer';
 import { Container } from '../../components/ui/Container';
 import { Button } from '../../components/ui/Button';
+import { TypeWriter } from '../../components/ui/TypeWriter/TypeWriter';
+import { Marquee } from '../../components/ui/Marquee/Marquee';
 import { ParticleField } from '../../components/background/ParticleField';
 import { SkillsSection } from './components/SkillsSection';
 import { ProjectsSection } from './components/ProjectsSection';
+import { ContactSection } from './components/ContactSection';
+import { TECH_STRIP } from './components/data';
 import styles from './Home.module.css';
 
 const fadeUp: Variants = {
@@ -72,7 +76,9 @@ export const Home = () => {
                 custom={2}
                 variants={fadeUp}
               >
-                Software Developer
+                <TypeWriter
+                  words={['Software Developer', 'Frontend', 'Backend', 'UI/UX']}
+                />
               </motion.p>
 
               <motion.p
@@ -115,6 +121,17 @@ export const Home = () => {
           </motion.div>
         </section>
 
+        <div className={styles.techStrip} aria-hidden="true">
+          <Marquee speed={30}>
+            {TECH_STRIP.map(({ name, icon: Icon }) => (
+              <span key={name} className={styles.techItem}>
+                <Icon size={14} />
+                {name}
+              </span>
+            ))}
+          </Marquee>
+        </div>
+
         <section id="skills" className={styles.section}>
           <Container>
             <SkillsSection />
@@ -124,6 +141,12 @@ export const Home = () => {
         <section id="projects" className={styles.section}>
           <Container>
             <ProjectsSection />
+          </Container>
+        </section>
+
+        <section id="contact" className={styles.section}>
+          <Container>
+            <ContactSection />
           </Container>
         </section>
       </main>

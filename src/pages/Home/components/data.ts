@@ -1,5 +1,40 @@
-import { Clock, Cpu, Database, Music, Music2, Server, Users, Wallet } from 'lucide-react';
+import {
+  Atom,
+  Braces,
+  Clock,
+  Coffee,
+  Code2,
+  Container,
+  Cpu,
+  Database,
+  GitBranch,
+  Globe,
+  Music,
+  Music2,
+  Palette,
+  Rocket,
+  Server,
+  Terminal,
+  Users,
+  Wallet,
+} from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+
+export const TECH_STRIP: { name: string; icon: LucideIcon }[] = [
+  { name: 'React', icon: Atom },
+  { name: 'TypeScript', icon: Braces },
+  { name: 'Angular', icon: Globe },
+  { name: 'JavaScript', icon: Code2 },
+  { name: 'Node.js', icon: Server },
+  { name: 'Express', icon: Terminal },
+  { name: 'PostgreSQL', icon: Database },
+  { name: 'Docker', icon: Container },
+  { name: 'Java', icon: Coffee },
+  { name: 'C++', icon: Cpu },
+  { name: 'Git', icon: GitBranch },
+  { name: 'UI/UX', icon: Palette },
+  { name: 'Framer Motion', icon: Rocket },
+];
 
 export type Gradient = 'preview1' | 'preview2' | 'preview3' | 'preview4' | 'preview5' | 'preview6' | 'preview7' | 'preview8';
 
