@@ -1,7 +1,11 @@
 import { motion } from 'framer-motion';
 import styles from './WaitComponent.module.css';
 
-export const WaitComponent = () => (
+interface WaitComponentProps {
+  label?: string;
+}
+
+export const WaitComponent = ({ label = 'Cargando portafolio' }: WaitComponentProps) => (
   <motion.div
     className={styles.overlay}
     initial={{ opacity: 0 }}
@@ -25,7 +29,7 @@ export const WaitComponent = () => (
         </div>
       </div>
       <p className={styles.text}>
-        Cargando portafolio<span className={styles.dots}><span>.</span><span>.</span><span>.</span></span>
+        {label}<span className={styles.dots}><span>.</span><span>.</span><span>.</span></span>
       </p>
     </div>
   </motion.div>

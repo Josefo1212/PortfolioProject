@@ -145,7 +145,7 @@ export const Navbar = () => {
 
   return (
     <>
-      {isLoggingOut && <WaitComponent />}
+      {isLoggingOut && <WaitComponent label="Cerrando portafolio" />}
       <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
       <Container>
         <div className={styles.content}>
